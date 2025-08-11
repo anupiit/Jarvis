@@ -1,0 +1,27 @@
+{
+  "name": "anish-calculator-app",
+  "version": "1.0.0",
+  "description": "A simple, responsive calculator web application that performs basic arithmetic operations: addition, subtraction, multiplication, and division.",
+  "main": "index.html",
+  "scripts": {
+    "start": "open index.html",
+    "dev": "live-server .",
+    "build": "echo 'Build script here'"
+  },
+  "keywords": [
+    "Basic arithmetic operations: addition, subtraction, multiplication, division",
+    "Clear button (AC) to reset the display",
+    "Backspace button to remove the last digit entered",
+    "Decimal point input",
+    "Error handling for division by zero",
+    "Responsive design for various screen sizes",
+    "Keyboard input support",
+    "Basic memory functions (M+, M-, MR, MC)",
+    "Display of current expression",
+    "Display of result",
+    "Positive/Negative toggle button (+/-)"
+  ],
+  "author": "Jarvis AI",
+  "dependencies": {},
+  "devDependencies": {}
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Simple Calculator</title>
+    <meta name="description" content="A simple, responsive calculator web application.">
+    <meta name="keywords" content="calculator, html, css, javascript, responsive">
+    <meta name="author" content="Bard">
+
+    <!-- Favicon (replace with your own) -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Accessibility - Setting the language for screen readers -->
+    <html lang="en" aria-label="Calculator">
+</head>
+
+<body>
+    <header>
+        <h1>Calculator</h1>
+    </header>
+
+    <main>
+        <div class="calculator">
+            <!-- Display Section -->
+            <div class="display">
+                <div class="expression" aria-live="polite"></div>
+                <div class="result" aria-live="polite">0</div>
+            </div>
+
+            <!-- Buttons Section -->
+            <div class="buttons">
+                <!-- Row 1 -->
+                <button type="button" class="button clear" data-action="clear">AC</button>
+                <button type="button" class="button backspace" data-action="backspace">
+                    <span aria-label="Backspace">
+                        &larr;
+                    </span>
+                </button>
+                <button type="button" class="button memory-clear" data-action="memory-clear">MC</button>
+                <button type="button" class="button operator" data-value="/" aria-label="Divide">÷</button>
+
+                <!-- Row 2 -->
+                <button type="button" class="button number" data-value="7">7</button>
+                <button type="button" class="button number" data-value="8">8</button>
+                <button type="button" class="button number" data-value="9">9</button>
+                <button type="button" class="button operator" data-value="*" aria-label="Multiply">&times;</button>
+
+                <!-- Row 3 -->
+                <button type="button" class="button number" data-value="4">4</button>
+                <button type="button" class="button number" data-value="5">5</button>
+                <button type="button" class="button number" data-value="6">6</button>
+                <button type="button" class="button operator" data-value="-" aria-label="Subtract">-</button>
+
+                <!-- Row 4 -->
+                <button type="button" class="button number" data-value="1">1</button>
+                <button type="button" class="button number" data-value="2">2</button>
+                <button type="button" class="button number" data-value="3">3</button>
+                <button type="button" class="button operator" data-value="+" aria-label="Add">+</button>
+
+                <!-- Row 5 -->
+                <button type="button" class="button positive-negative" data-action="positive-negative">+/-</button>
+                <button type="button" class="button number" data-value="0">0</button>
+                <button type="button" class="button decimal" data-value=".">.</button>
+                <button type="button" class="button equals" data-action="calculate">=</button>
+
+                <!-- Memory Buttons -->
+                <button type="button" class="button memory-add" data-action="memory-add">M+</button>
+                <button type="button" class="button memory-subtract" data-action="memory-subtract">M-</button>
+                <button type="button" class="button memory-recall" data-action="memory-recall">MR</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Simple Calculator</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+
+</html>

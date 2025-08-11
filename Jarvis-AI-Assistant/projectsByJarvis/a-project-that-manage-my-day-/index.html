@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Manage your day with this simple and effective project management tool.">
+    <meta name="keywords" content="daily planner, task management, productivity, schedule">
+    <meta name="author" content="Your Name">
+    <link rel="stylesheet" href="styles.css">
+    <title>My Day Manager</title>
+    <!-- Favicon (replace with your own) -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <h1>My Day</h1>
+            <!-- Navigation items can be added here -->
+        </nav>
+    </header>
+
+    <main>
+        <section id="today">
+            <h2>Today's Tasks</h2>
+            <div id="task-list">
+                <!-- Tasks will be dynamically added here by JavaScript -->
+                </div>
+            <button id="add-task-button" aria-label="Add a new task">+</button>
+        </section>
+
+        <section id="add-task-form" style="display:none;">
+            <h2>Add New Task</h2>
+            <form id="task-form">
+                <label for="task-title">Task Title:</label>
+                <input type="text" id="task-title" name="task-title" required aria-required="true">
+
+                <label for="task-description">Description (optional):</label>
+                <textarea id="task-description" name="task-description" rows="3"></textarea>
+
+                <label for="task-due-date">Due Date (optional):</label>
+                <input type="date" id="task-due-date" name="task-due-date">
+
+                <label for="task-priority">Priority:</label>
+                <select id="task-priority" name="task-priority">
+                    <option value="low">Low</option>
+                    <option value="medium" selected>Medium</option>
+                    <option value="high">High</option>
+                </select>
+
+                <button type="submit">Save Task</button>
+                <button type="button" id="cancel-task-button">Cancel</button>
+            </form>
+        </section>
+
+        <section id="upcoming">
+            <h2>Upcoming</h2>
+            <div id="upcoming-task-list">
+                <!-- Upcoming tasks will be dynamically added here -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 My Day Manager. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
