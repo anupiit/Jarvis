@@ -1,4 +1,4 @@
-# anish-calculator-app
+# anup-calculator-app
 
 A simple, responsive calculator web application that performs basic arithmetic operations: addition, subtraction, multiplication, and division.
 
