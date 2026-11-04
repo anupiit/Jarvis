@@ -45,6 +45,10 @@ Response parsing joins every non-thought text part of `candidates[0].content.par
 identical `contents` and increased `maxOutputTokens`, max 2 hops), `promptFeedback.blockReason`,
 `usageMetadata`, `modelVersion` and `modelStatus`.
 
+**Watch item.** On 2026-11-04 Google's 404 for a retired model (`gemini-2.5-flash`) recommended the
+Interactions API. `generateContent` worked for current models in every live run, so no migration was
+made; if Google deprecates `generateContent`, only `services/geminiClient.js` needs to change.
+
 **Why generateContent and not the Interactions API.** Jarvis makes stateless single-turn requests;
 `generateContent` is the stable method listed for text models in the official Discovery document
 (revision 20261103) and is what the existing code already used. The Interactions API is a separate

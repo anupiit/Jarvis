@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <h1>To-Do List</h1>
+    </header>
+
+    <main class="app-main">
+      <form id="todo-form" class="todo-form" aria-label="Create a new task">
+        <div class="input-group">
+          <label for="todo-input" class="sr-only">New task description</label>
+          <input 
+            type="text" 
+            id="todo-input" 
+            class="todo-input" 
+            placeholder="What needs to be done?" 
+            autocomplete="off" 
+            maxlength="200"
+            required
+            aria-label="New task title"
+          >
+          <button type="submit" id="todo-submit" class="btn btn-primary" aria-label="Add task">
+            <span>Add Task</span>
+          </button>
+        </div>
+      </form>
+
+      <div class="controls-bar">
+        <div class="filters" role="tablist" aria-label="Task Filter Options">
+          <button type="button" class="filter-btn active" data-filter="all" id="filter-all" role="tab" aria-selected="true">All</button>
+          <button type="button" class="filter-btn" data-filter="active" id="filter-active" role="tab" aria-selected="false">Active</button>
+          <button type="button" class="filter-btn" data-filter="completed" id="filter-completed" role="tab" aria-selected="false">Completed</button>
+        </div>
+        <button type="button" id="clear-completed" class="btn-clear" aria-label="Clear all completed tasks">
+          Clear Completed
+        </button>
+      </div>
+
+      <section class="task-section">
+        <ul id="todo-list" class="todo-list" aria-live="polite" aria-label="Task List">
+          <!-- Tasks dynamically rendered by script.js -->
+        </ul>
+        <div id="empty-state" class="empty-state hidden">
+          <p id="empty-state-text">No tasks found.</p>
+        </div>
+      </section>
+
+      <footer class="app-footer">
+        <span id="task-counter" class="task-counter">0 items left</span>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>

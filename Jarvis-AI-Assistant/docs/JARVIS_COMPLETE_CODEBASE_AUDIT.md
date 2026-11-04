@@ -219,6 +219,9 @@ These real payloads are used verbatim as test fixtures.
 
 ## 7. Environment constraints for this engagement
 
+> Audit-time snapshot. Later the same day the owner supplied a Gemini API key, and the live runs were
+> performed — see `JARVIS_FINAL_BENCHMARK_REPORT.md`.
+
 | Dependency | Availability here | Impact |
 |---|---|---|
 | Gemini API key | **Not available** (and will not be requested) | Live generation, live 404/429/503 and live E2E generation cannot be executed here |

@@ -72,21 +72,52 @@ async function browserChecks(htmlPath) {
     record('page has a visible text input', hasInput);
     if (!hasInput) throw new Error('no input');
 
-    // The task "item" is the smallest element that contains the task text AND a control
-    // (checkbox/button). Re-resolved on every use because apps often re-render their list.
+    // Controls are located by starting at the innermost element that contains a task's text and
+    // walking up its ancestors until a matching control appears. The walk stops before any
+    // container that also holds another task's text, so a control belonging to a different task
+    // is never clicked or credited. Task C is a sentinel that is never touched.
+    const A = 'Verify task A';
+    const B = 'Verify task B';
+    const C = 'Verify task C';
     let markCounter = 0;
-    async function itemByText(text) {
+
+    async function controlFor(text, kind) {
       const attr = `data-jarvis-verify-${++markCounter}`;
-      const found = await page.evaluate(([t, a]) => {
-        const withText = [...document.querySelectorAll('body *')].filter(el => el.textContent.includes(t));
-        const withControl = withText.filter(el => el.querySelector('input[type=checkbox], button, [role=button]'));
-        const pool = withControl.length ? withControl : withText;
-        pool.sort((x, y) => x.querySelectorAll('*').length - y.querySelectorAll('*').length);
-        if (!pool.length) return false;
-        pool[0].setAttribute(a, '1');
-        return true;
-      }, [text, attr]);
+      const others = [A, B, C].filter(t => t !== text);
+      const found = await page.evaluate(([t, k, otherTexts, a]) => {
+        const DELETE = /delete|remove|trash|×|✕|✖|🗑/i;
+        const COMPLETE = /complete|done|toggle|check|✓|✔/i;
+        const describe = (el) => [el.getAttribute('aria-label'), el.getAttribute('title'), String(el.className && el.className.baseVal !== undefined ? el.className.baseVal : el.className || ''), el.textContent].join(' ');
+        const isMatch = (el) => (k === 'complete'
+          ? el.matches('input[type=checkbox]') || (el.matches('button,[role=button]') && COMPLETE.test(describe(el)) && !DELETE.test(describe(el)))
+          : el.matches('button,[role=button],a') && (DELETE.test(describe(el)) || /^\s*x\s*$/i.test(el.textContent)));
+        const holders = [...document.querySelectorAll('body *')].filter(el => el.textContent.includes(t));
+        holders.sort((x, y) => x.querySelectorAll('*').length - y.querySelectorAll('*').length);
+        for (let node = holders[0]; node && node !== document.body; node = node.parentElement) {
+          if (otherTexts.some(o => node.textContent.includes(o))) return false;
+          const control = [node, ...node.querySelectorAll('*')].find(isMatch);
+          if (control) { control.setAttribute(a, '1'); return true; }
+        }
+        return false;
+      }, [text, kind, others, attr]);
       return found ? page.locator(`[${attr}]`).first() : null;
+    }
+
+    async function isCompleted(text) {
+      const others = [A, B, C].filter(t => t !== text);
+      return page.evaluate(([t, otherTexts]) => {
+        const holders = [...document.querySelectorAll('body *')].filter(el => el.textContent.includes(t));
+        holders.sort((x, y) => x.querySelectorAll('*').length - y.querySelectorAll('*').length);
+        const looksDone = (n) => (n.matches('input[type=checkbox]') && n.checked)
+          || /(^|[\s_-])(completed?|done|checked|finished)($|[\s_-])/i.test(String(n.className && n.className.baseVal !== undefined ? n.className.baseVal : n.className || ''))
+          || getComputedStyle(n).textDecorationLine.includes('line-through')
+          || n.getAttribute('aria-checked') === 'true';
+        for (let node = holders[0]; node && node !== document.body; node = node.parentElement) {
+          if (otherTexts.some(o => node.textContent.includes(o))) return false;
+          if ([node, ...node.querySelectorAll('*')].some(looksDone)) return true;
+        }
+        return false;
+      }, [text, others]);
     }
 
     async function addTask(text) {
@@ -103,52 +134,37 @@ async function browserChecks(htmlPath) {
       try { await page.getByText(text, { exact: false }).first().waitFor({ timeout: 1500 }); return true; } catch (_) { return false; }
     }
 
-    record('add task "Verify task A"', await addTask('Verify task A'));
-    record('add task "Verify task B"', await addTask('Verify task B'));
+    record(`add task "${A}"`, await addTask(A));
+    record(`add task "${B}"`, await addTask(B));
+    record(`add task "${C}" (sentinel, never touched)`, await addTask(C));
     const body = await page.locator('body').innerText();
-    record('both tasks are displayed', body.includes('Verify task A') && body.includes('Verify task B'));
+    record('all tasks are displayed', [A, B, C].every(t => body.includes(t)));
 
-    // Complete task A
-    const itemA = await itemByText('Verify task A');
-    if (itemA) {
-      const checkbox = itemA.locator('input[type="checkbox"]').first();
-      if (await checkbox.count()) await checkbox.click(); // not check(): many apps re-render and detach the box
-      else {
-        const completeBtn = itemA.locator('button').filter({ hasText: /complete|done|✓|✔|check/i }).first();
-        if (await completeBtn.count()) await completeBtn.click(); else await itemA.getByText('Verify task A').first().click();
-      }
-    }
-    await page.waitForTimeout(200);
-    const completedA = async () => { const el = await itemByText('Verify task A'); return el ? el.evaluate((el) => {
-      const cb = el.querySelector('input[type="checkbox"]');
-      if (cb && cb.checked) return true;
-      const all = [el, ...el.querySelectorAll('*')];
-      return all.some(n => /complete|done|checked|finished/i.test(n.className && n.className.baseVal !== undefined ? n.className.baseVal : n.className || '')
-        || getComputedStyle(n).textDecorationLine.includes('line-through'));
-    }) : false; };
-    record('task A can be marked completed', await completedA());
+    const completeControl = await controlFor(A, 'complete');
+    record('task A has its own completion control', Boolean(completeControl));
+    if (completeControl) await completeControl.click(); // click, not check(): apps often re-render and detach it
+    await page.waitForTimeout(250);
+    record('task A can be marked completed', await isCompleted(A));
+    record('completing A does not complete the sentinel C', !(await isCompleted(C)));
 
-    // Delete task B
-    const itemB = await itemByText('Verify task B');
-    if (itemB) {
-      const delAttr = itemB.locator('[aria-label*="delete" i], [aria-label*="remove" i], [title*="delete" i], [class*="delete" i], [class*="remove" i]').first();
-      const delText = itemB.locator('button, [role="button"], a').filter({ hasText: /delete|remove|×|✕|✖|🗑|trash|^\s*x\s*$/i }).first();
-      const delTarget = (await delAttr.count()) ? delAttr : delText;
-      if (await delTarget.count()) await delTarget.click();
-    }
+    const deleteControl = await controlFor(B, 'delete');
+    record('task B has its own delete control', Boolean(deleteControl));
+    if (deleteControl) await deleteControl.click();
     await page.waitForTimeout(300);
-    record('task B can be deleted', !(await page.locator('body').innerText()).includes('Verify task B'));
+    const afterDelete = await page.locator('body').innerText();
+    record('task B can be deleted (A and C remain)', !afterDelete.includes(B) && afterDelete.includes(A) && afterDelete.includes(C));
 
     // Persistence
     const stored = await page.evaluate(() => Object.keys(localStorage).map(k => localStorage.getItem(k)).join('\n'));
-    record('tasks are written to localStorage', stored.includes('Verify task A'));
+    record('tasks are written to localStorage', stored.includes(A));
     await page.reload();
     await page.waitForLoadState('load');
-    await page.waitForTimeout(200);
+    await page.waitForTimeout(250);
     const after = await page.locator('body').innerText();
-    record('after reload, task A is still there', after.includes('Verify task A'));
-    record('after reload, deleted task B stays deleted', !after.includes('Verify task B'));
-    record('after reload, task A is still completed', after.includes('Verify task A') && await completedA());
+    record('after reload, tasks A and C are still there', after.includes(A) && after.includes(C));
+    record('after reload, deleted task B stays deleted', !after.includes(B));
+    record('after reload, task A is still completed', after.includes(A) && await isCompleted(A));
+    record('after reload, sentinel C is still not completed', after.includes(C) && !(await isCompleted(C)));
   } catch (e) {
     if (e.message !== 'no input') record('browser run completed', false, e.message);
   } finally {

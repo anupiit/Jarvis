@@ -11,11 +11,14 @@ const path = require('path');
 const { validateFile } = require('../services/codeValidator');
 const { SelfCorrector } = require('../models/SelfCorrector');
 const { GeminiEngine } = require('../services/geminiService');
+const { createHttpTransport } = require('../services/geminiClient');
+const config = require('../config/config');
 const { DEFECTS } = require('../test/fixtures/defectCorpus');
 const APP = require('../test/fixtures/todoApp');
 const { stats, writeResult } = require('./lib/benchUtil');
 
 const live = process.argv.includes('--live');
+const apiErrors = [];
 
 async function timeIt(fn) {
   const t = process.hrtime.bigint();
@@ -60,7 +63,16 @@ async function timeIt(fn) {
   let engineFor;
   let mode;
   if (live) {
-    const engine = new GeminiEngine();
+    // Record every non-2xx response body (they never contain the key) so failures can be audited.
+    const base = createHttpTransport({ apiKey: config.geminiApiKey, baseUrl: config.GEMINI.baseUrl });
+    const transport = {
+      async request(req) {
+        const res = await base.request(req);
+        if (res.status < 200 || res.status >= 300) apiErrors.push({ at: new Date().toISOString(), status: res.status, retryAfter: res.headers['retry-after'] || null, body: (() => { try { return JSON.parse(res.bodyText); } catch (_) { return res.bodyText.slice(0, 2000); } })() });
+        return res;
+      }
+    };
+    const engine = new GeminiEngine({ transport });
     if (!engine.apiKey) {
       console.error('LIVE MODE BLOCKED: GEMINI_API_KEY is not set. No results recorded.');
       process.exit(2);
@@ -82,7 +94,11 @@ async function timeIt(fn) {
       ? `Write the complete contents of the file "${d.path}". Use exactly this content and return it unchanged:\n${d.broken}`
       : 'scripted';
     const t = await timeIt(() => corrector.generateValidFile({ filePath: d.path, prompt, context: d.context || {} }));
-    correction.push({ id: d.id, repaired: t.value.ok, corrections: t.value.corrections, error: t.value.error ? t.value.error.kind : null, ms: Math.round(t.ms) });
+    const err = t.value.error || null;
+    correction.push({
+      id: d.id, repaired: t.value.ok, corrections: t.value.corrections, ms: Math.round(t.ms),
+      error: err ? err.kind : null, errorStatus: err ? err.httpStatus : null, quotaIds: err && err.quotaIds && err.quotaIds.length ? err.quotaIds : undefined
+    });
   }
 
   const out = {
@@ -90,10 +106,20 @@ async function timeIt(fn) {
     corpusSize: DEFECTS.length,
     detection: { detected: detection.filter(d => d.detected).length, fixAccepted: detection.filter(d => d.fixAccepted).length, perDefect: detection, validationMs: stats(detection.map(d => d.ms)) },
     falsePositives: { filesChecked: goodSet.length, flagged: falsePositives.length, details: falsePositives },
-    correction: { mode, repaired: correction.filter(c => c.repaired).length, perDefect: correction }
+    correction: {
+      mode,
+      // A defect whose run ended in an API error was NOT measured — it is neither a repair nor a failure to repair.
+      measured: correction.filter(c => !c.error).length,
+      repaired: correction.filter(c => c.repaired).length,
+      notRepaired: correction.filter(c => !c.repaired && !c.error).length,
+      notMeasured: correction.filter(c => c.error).map(c => ({ id: c.id, error: c.error })),
+      perDefect: correction
+    },
+    apiErrorResponses: live ? apiErrors : undefined
   };
   console.table(detection.map(d => ({ id: d.id, detected: d.detected, rules: d.rules, fixAccepted: d.fixAccepted })));
   console.log(`Detection: ${out.detection.detected}/${DEFECTS.length} | fixes accepted: ${out.detection.fixAccepted}/${DEFECTS.length} | false positives: ${falsePositives.length}/${goodSet.length}`);
-  console.log(`Correction (${mode}): ${out.correction.repaired}/${DEFECTS.length}`);
+  const c = out.correction;
+  console.log(`Correction (${mode}): repaired ${c.repaired}/${c.measured} measured; ${c.notMeasured.length} not measured because of API errors${c.notMeasured.length ? ` (${[...new Set(c.notMeasured.map(n => n.error))].join(', ')})` : ''}`);
   console.log('Saved:', writeResult(live ? 'validation-live' : 'validation', out));
 })();

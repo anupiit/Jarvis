@@ -4,6 +4,10 @@ All numbers below were measured on **2026-11-04** in this branch's environment (
 Node.js v22.23.4, 4 × Intel Xeon @ 2.10 GHz) unless stated otherwise. Raw output:
 [`docs/benchmark-results/`](benchmark-results/). No figure from earlier reports is reused.
 
+**Update (same day):** the repository owner supplied a Gemini API key (free tier). The previously
+blocked live benchmarks were run with it; results are in §5–§6 and `benchmark-results/live-runs/`.
+The key is stored only in the git-ignored `.env` and appears in no output, log or committed file.
+
 **Label legend:** `MOCKED` = no network/Gemini involved · `LOCAL` = real processes/sockets on this
 machine, no Google · `LIVE` = real request to Google's API · `BLOCKED` = could not run here.
 
@@ -20,11 +24,12 @@ machine, no Google · `LIVE` = real request to Google's API · `BLOCKED` = could
 | 7 | Defect detection (15 seeded defects) | LOCAL | **15 / 15 detected**, 15 / 15 fixes accepted |
 | 8 | False positives on known-good files | LOCAL | **0 / 7** flagged |
 | 9 | Self-correction loop, scripted corrector | MOCKED | 15 / 15 (plumbing only — not an AI repair rate) |
-| 10 | Self-correction, real Gemini repairs | LIVE | **BLOCKED** (no API key) |
+| 10 | Self-correction, real Gemini repairs | LIVE | **2 / 2 attempted defects repaired** (1 correction each); 13 not measured — free-tier daily quota (20 requests/model/day) ran out |
 | 11 | Invalid key against the live endpoint | LIVE | **1 request, 0 retries, whole CLI session 491 ms** (baseline: 6 requests over ~31 s, then crash) |
-| 12 | Live To-Do generation benchmark (Part 11) | LIVE | **BLOCKED** (no API key) |
-| 13 | E2E harness self-test (real CLI + real HTTP socket + Chromium) | LOCAL, mock Gemini | GENERATED, **18 / 18** browser/static checks |
-| 14 | Browser verifier controls | LOCAL | reference app 18/18; persistence-removed variant fails exactly 3/18 |
+| 12 | Live To-Do generation benchmark (Part 11) | LIVE | **2 / 2 runs GENERATED** (`gemini-3.5-flash`), 3/3 files valid on first attempt, **23 / 23** browser/static checks each |
+| 12a | Live diagnostics | LIVE | ListModels: 60 models (46 with generateContent); probes: 1 OK, 1 × 404 for a listed model, 503/429 handled |
+| 13 | E2E harness self-test (real CLI + real HTTP socket + Chromium) | LOCAL, mock Gemini | GENERATED, **23 / 23** browser/static checks |
+| 14 | Browser verifier controls | LOCAL | reference app 23/23; three broken variants each fail only their broken behaviour |
 | 15 | Voice dispatch latency (mock recognizer) | MOCKED | p50 **0.003 ms**, p95 0.007 ms |
 | 16 | PowerShell start-up / SAPI probe | LOCAL (Windows) | **Not measurable** (Linux) |
 | 17 | Physical microphone/speaker | hardware | **NOT TESTED** |
@@ -55,6 +60,8 @@ Command: `npm test` (built-in `node:test`; no nested suites — every count is a
 | **Total** | **21** | **229** |
 
 * **Real API tests in the suite:** 0 (the suite is deterministic and offline by design).
+* **Live API runs outside the suite (with the owner's key):** `diagnose` + 3 model probes, 2 full E2E
+  generations, 2 attempts of the live repair benchmark (§5–§6).
 * **Live API checks outside the suite:** `npm run live:errors` — invalid key on `generateContent`
   (→ AUTH, HTTP 400 `API_KEY_INVALID`), invalid key on ListModels (→ AUTH), no key (→ PERMISSION,
   HTTP 403). The DNS check cannot be reproduced live here: the sandbox proxy turns an unknown host into
@@ -108,8 +115,15 @@ Script: `npm run bench:validation` (corpus: `test/fixtures/defectCorpus.js`).
   mid-tag at ~7.5 KB.
 * Self-correction with a **scripted** corrector (returns the known fix on the first correction):
   15 / 15 accepted after 1 correction. This proves the loop and the validator agree; it says nothing
-  about Gemini's ability to repair code. `npm run bench:validation:live` measures that — **BLOCKED**
-  here (no key).
+  about Gemini's ability to repair code. `npm run bench:validation:live` measures that:
+* **Live repair (`gemini-3.5-flash`):** the first 2 defects (`js-missing-brace`,
+  `js-unterminated-string`) were returned unchanged as instructed, failed validation, and were
+  **repaired by Gemini after 1 correction each** (8.1 s and 9.0 s). On the 3rd defect Google returned
+  HTTP 429 `GenerateRequestsPerDayPerProjectPerModel-FreeTier` ("limit: 20", `retryDelay` 84 916 s);
+  Jarvis classified it as QUOTA_EXHAUSTED and sent **no further requests** (12 fast failures via the
+  circuit latch). A second attempt hit the same daily limit immediately (raw error body recorded in
+  `validation-live.json`). Result: **2/2 measured repairs succeeded; 13/15 not measured.** Two samples
+  are far too few for a repair *rate*. Re-run `npm run bench:validation:live` after the daily reset.
 
 ## 5. Gemini error handling — LIVE
 
@@ -121,32 +135,70 @@ Script: `npm run bench:validation` (corpus: `test/fixtures/defectCorpus.js`).
 | Message | `API key not valid` repeated | `Gemini rejected the API key (HTTP 400 INVALID_ARGUMENT)` + how to fix it |
 
 Transcripts: `benchmark-results/live-invalid-key-session.txt` (final code) and
-`benchmark-results/live-error-paths.txt`. Both used a deliberately invalid key; no real credential was
-used or exists in this environment.
+`benchmark-results/live-error-paths.txt`. Both used a deliberately invalid key.
+
+### 5.1 Live error classes observed with the real key
+
+| Observed live | Jarvis behaviour |
+|---|---|
+| HTTP 503 "This model is currently experiencing high demand" (`gemini-flash-latest`, `gemini-3.8-flash`, and mid-generation on `gemini-3.5-flash`) | SERVER_UNAVAILABLE; bounded retries with jittered backoff (≈0.5–4 s). In the E2E runs, all 5 transient 503s were recovered and generation continued |
+| HTTP 429 per-minute limit (`gemini-3.8-flash`) | RATE_LIMITED; retried after Google's ~33 s delay; gave up after 4 attempts with the estimate |
+| HTTP 429 per-day free-tier limit (`gemini-3.5-flash`, limit 20) | QUOTA_EXHAUSTED; not retried; later requests fail fast without being sent |
+| HTTP 404 "models/gemini-2.5-flash is no longer available to new users" although ListModels lists it | MODEL_NOT_FOUND; confirms that a listed model is not necessarily usable, which is why `diagnose` sends a real probe |
+
+Raw: `benchmark-results/live-diagnose.txt`, `live-runs/*/transcript.txt`, `validation-live.json`.
 
 ## 6. Project generation
 
-### 6.1 Live benchmark (Part 11) — BLOCKED
+### 6.1 Live benchmark (Part 11) — 2 runs with `gemini-3.5-flash`
 `npm run e2e:todo` sends the exact benchmark request to the real CLI, answers the approval prompt
-with `y`, then runs `verify-web-project.js`. It requires `GEMINI_API_KEY`; none is available in this
-environment and none was requested. Recorded result: `benchmark-results/e2e-todo.json` → `BLOCKED`.
-**No claim is made that Gemini generates a working To-Do app.**
+with `y` (the same prompt a user sees), then runs `verify-web-project.js`. `gemini-flash-latest`
+(the default) and `gemini-3.8-flash` were returning 503 at the time, so `GEMINI_MODEL=gemini-3.5-flash`
+was used (Google served it as `gemini-3.6-flash`).
+
+| | Run 1 | Run 2 |
+|---|---|---|
+| Plan | `todo-list-app`, exactly `index.html`, `style.css`, `script.js`, no adjustments needed | same; existing files marked `[replace]` |
+| Files | 3/3 valid on first attempt (2.2 KB / 8.2 KB / 5.9 KB) | 3/3 valid on first attempt (2.5 KB / 8.1 KB / 7.7 KB) |
+| AI corrections | 0 | 0 |
+| Gemini requests | 4 calls, 7 HTTP attempts (3 × 503 retried) | 4 calls, 6 HTTP attempts (2 × 503 retried) |
+| Per-call latency | p50 29.9 s, max 47.5 s | p50 11.4 s, max 55.1 s |
+| Wall time (incl. browser check) | 222 s | 143 s |
+| Browser/static verification | 23 / 23 (re-verified, see note) | **23 / 23** |
+
+**Verifier note (run 1).** The run-1 record says 16/18. Both failures ("task B can be deleted",
+"deleted task B stays deleted") came from the **verifier**: it treated the inner
+`div.todo-item-content` (text + checkbox) as the task item and therefore never saw the app's
+`button.btn-delete` beside it. A direct Playwright check with the app's own selectors confirmed that
+delete works and persists. The verifier was rewritten (walk up from the task text; an untouched
+sentinel task bounds the walk) and re-validated: reference app 23/23; variants without persistence,
+with a no-op delete and with a no-op completion each fail only their own checks. Run 1's app
+re-verified 23/23. Both apps are archived in `live-runs/run1/app` and `live-runs/run2/app`; run 2's
+output is `projectsByJarvis/todo-list-app/`.
+
+Two runs show the pipeline works live; they are not enough to state a success *rate*.
 
 ### 6.2 Harness self-test — LOCAL, mock Gemini
 `npm run e2e:selftest` runs the same harness, with the real CLI process and the real HTTP client over
 a real local socket, against a local server that returns the hand-written reference app.
 
-* 4 requests (1 plan + 3 files), 3/3 files validated on first attempt, 109 ms.
+* 4 requests (1 plan + 3 files), 3/3 files validated on first attempt (≈ 0.1–0.2 s for the CLI part).
 * Folder `todo-list-app/` with exactly `index.html`, `style.css`, `script.js`.
-* Browser verification **18 / 18**. Static checks: exactly 3 files, no folders, HTML references
-  `style.css` and `script.js`, all files valid. Chromium checks: add two tasks, display, complete,
-  delete, localStorage write, after reload the task persists, the deleted task stays deleted, the
-  completion persists, no console errors.
+* Browser verification **23 / 23**. Static checks: exactly 3 files, no folders, HTML references
+  `style.css` and `script.js`, all files valid. Chromium checks: add three tasks (one is an untouched
+  sentinel), display, each task has its own controls, complete A without affecting the sentinel,
+  delete B while A and C remain, localStorage write, after reload A and C persist, B stays deleted,
+  A stays completed, the sentinel stays not completed, no console errors.
 
 ### 6.3 Verifier controls
-* Reference app: 18 / 18.
-* Same app with the `localStorage.setItem` call removed: fails exactly the three persistence checks
-  (15 / 18). The verifier can fail, so its pass results are meaningful.
+| App | Result |
+|---|---|
+| Reference app | 23 / 23 |
+| `localStorage.setItem` removed | 19 / 23 — fails only the 4 persistence checks |
+| Delete handler does nothing | 21 / 23 — fails only the 2 delete checks |
+| Completion handler does nothing | 21 / 23 — fails only the 2 completion checks |
+
+The verifier can fail on each behaviour it checks, so its pass results are meaningful.
 
 ## 7. Voice
 

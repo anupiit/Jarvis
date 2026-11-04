@@ -13,14 +13,17 @@ wherever they are used. Measured 2026-11-04 on Node.js v22.23.4, Linux, 4 × Xeo
 | Outbound-request reduction, 200 calls / 25 prompts | 87.5 % (200 → 25) | **mocked transport** | `npm run bench:reliability` | `benchmark-results/reliability.json` |
 | Engine overhead per call | p50 0.021 ms | **mocked transport** | `npm run bench:reliability` | `benchmark-results/reliability.json` |
 | Invalid-key failure, live endpoint | 1 request, 0 retries, 491 ms whole session (old: 6 requests, ~31 s, then crash) | **live** | `npm run live:errors`; see transcript | `benchmark-results/live-invalid-key-session.txt` |
-| E2E harness self-test | 3/3 files, 18/18 browser checks | local, **mock Gemini** | `npm run e2e:selftest` | `benchmark-results/e2e-todo-selftest*.json` |
+| E2E harness self-test | 3/3 files, 23/23 browser checks | local, **mock Gemini** | `npm run e2e:selftest` | `benchmark-results/e2e-todo-selftest*.json` |
+| Live To-Do generation (exact benchmark prompt) | 2/2 runs generated; 3/3 files valid on first attempt; 23/23 browser/static checks each; 143–222 s | **live** (`gemini-3.5-flash`, free tier) | `npm run e2e:todo` | `benchmark-results/live-runs/` |
+| Transient 503s during live generation | 5/5 recovered by bounded retry (no failed file) | **live** | `npm run e2e:todo` | `live-runs/*/transcript.txt` |
+| Live AI repairs of seeded defects | 2/2 attempted repaired (1 correction each); 13 not measured (daily quota) | **live** | `npm run bench:validation:live` | `benchmark-results/validation-live.json` |
 
-## Pending (blocked here — run locally to obtain)
+## Pending (run locally to obtain)
 
 | Metric | Command | Why pending |
 |---|---|---|
-| Live To-Do generation success rate + browser verification | `npm run e2e:todo` | needs `GEMINI_API_KEY` |
-| Real Gemini repair rate on 15 defects | `npm run bench:validation:live` | needs `GEMINI_API_KEY` |
+| Live To-Do success **rate** (more runs, several days) | `npm run e2e:todo` | 2 runs so far; free tier = 20 requests/model/day |
+| Real Gemini repair **rate** on 15 defects | `npm run bench:validation:live` | 2/15 measured before the daily limit |
 | PowerShell start-up time, SAPI probe time | `npm run bench:voice` (Windows) | needs Windows |
 | Speech recognition correctness / speaker output | `npm run voice:check` (Windows) | needs microphone + speakers |
 

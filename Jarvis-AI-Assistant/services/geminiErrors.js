@@ -95,6 +95,7 @@ function describeKind(kind) {
 function hintFor(kind, extra = {}) {
   const model = extra.model ? `"${extra.model}"` : 'the configured model';
   const wait = extra.retryAfterMs ? ` Google suggests waiting ${formatDuration(extra.retryAfterMs)}.` : '';
+  const quota = extra.quotaIds && extra.quotaIds.length ? ` (quota: ${extra.quotaIds.join(', ')})` : '';
   switch (kind) {
     case ErrorKind.CONFIG: return 'Create .env next to package.json (copy .env.example) and restart Jarvis.';
     case ErrorKind.AUTH: return 'Check GEMINI_API_KEY in .env (no quotes or spaces), then restart Jarvis. Keys: https://aistudio.google.com/app/apikey';
@@ -103,8 +104,8 @@ function hintFor(kind, extra = {}) {
     case ErrorKind.INVALID_REQUEST: return `The request was rejected as invalid for ${model}. Run "diagnose" to verify the model supports generateContent.`;
     case ErrorKind.PRECONDITION: return 'The API refused the request for an account/region reason (see message). This will not succeed by retrying.';
     case ErrorKind.TIMEOUT: return 'The request took too long. Check your connection; large files can take a while — retry later.';
-    case ErrorKind.RATE_LIMITED: return `Too many requests per minute for this key/model.${wait}`;
-    case ErrorKind.QUOTA_EXHAUSTED: return `The daily quota for ${model} is used up.${wait} Try again after the quota resets, switch GEMINI_MODEL, or enable billing.`;
+    case ErrorKind.RATE_LIMITED: return `Too many requests per minute for this key/model.${wait}${quota}`;
+    case ErrorKind.QUOTA_EXHAUSTED: return `The daily quota for ${model} is used up.${wait} Try again after the quota resets, switch GEMINI_MODEL, or enable billing.${quota}`;
     case ErrorKind.BILLING_REQUIRED: return `${model} is not available on your current tier (quota limit 0 or credits depleted). Enable billing in Google AI Studio or choose another model ("models").`;
     case ErrorKind.SERVER_UNAVAILABLE: return 'Gemini is overloaded or having an outage. Try again in a few minutes.';
     case ErrorKind.DNS: return 'generativelanguage.googleapis.com could not be resolved. Check your internet connection, DNS, VPN, proxy or firewall.';

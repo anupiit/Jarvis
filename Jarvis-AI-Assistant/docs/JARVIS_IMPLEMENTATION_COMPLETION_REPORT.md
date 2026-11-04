@@ -1,8 +1,9 @@
 # Jarvis AI Assistant — Implementation Completion Report
 
 **Date:** 2026-11-04 · **Branch:** `claude/ecstatic-pascal-838lxf` (from `main` @ `a64a3fc`)
-**Environment used:** Linux container, Node.js v22.23.4, Chromium + Playwright. No Gemini API key, no
-Windows, no microphone/speakers.
+**Environment used:** Linux container, Node.js v22.23.4, Chromium + Playwright. No Windows, no
+microphone/speakers. A Gemini API key (free tier) was supplied by the owner after the first report and
+used for the live runs in §9–§10; it lives only in the git-ignored `.env`.
 
 ---
 
@@ -106,15 +107,25 @@ Not modified: `.gitignore` (already ignored `.env`), `package-lock.json`, previo
 | Live: invalid key → `generateContent` / ListModels | HTTP 400 `INVALID_ARGUMENT`, `ErrorInfo.reason = API_KEY_INVALID` → AUTH, not retried |
 | Live: no key → ListModels | HTTP 403 `PERMISSION_DENIED` → PERMISSION |
 | Live: unknown request field | HTTP 400 `BadRequest.fieldViolations` → INVALID_REQUEST (captured with curl) |
-| Live: successful generation, ListModels contents, 404/429/503 | **BLOCKED** — no API key; covered with documented payload shapes |
-| Model `gemini-3.8-flash` from earlier tests | Not verifiable here; run `diagnose gemini-3.8-flash` |
+| Live: ListModels with the owner's key | 60 models, 46 with `generateContent` |
+| Live: successful generation | `gemini-3.5-flash` probe OK (6.9 s, served as `gemini-3.6-flash`); 2 full E2E runs |
+| Live: HTTP 503 high demand | `gemini-flash-latest` and `gemini-3.8-flash` at test time; retried, reported; 5/5 transient 503s during E2E recovered |
+| Live: HTTP 429 | per-minute (`gemini-3.8-flash`) → RATE_LIMITED, retried after ~33 s; per-day free tier "limit: 20" (`gemini-3.5-flash`) → QUOTA_EXHAUSTED, not retried, later calls not sent |
+| Live: HTTP 404 | `gemini-2.5-flash` is listed by ListModels but returns "no longer available to new users" → MODEL_NOT_FOUND |
+| Model `gemini-3.8-flash` from earlier tests | Listed and reachable, but overloaded/rate-limited during this session; not used for the E2E runs |
 
 ## 10. Project-generation verification
 
 * Mocked AI, real stack: 21 e2e tests — plan → approval → 3 validated files with correct links;
   cancellation writes nothing; Gemini failure → diagnostic → recovery; syntax error → correction.
-* Real CLI process + real HTTP socket + mock Gemini server + Chromium: 18/18 checks.
-* **Live Gemini To-Do benchmark: BLOCKED (no key).** Command ready: `npm run e2e:todo`.
+* Real CLI process + real HTTP socket + mock Gemini server + Chromium: 23/23 checks.
+* **Live Gemini To-Do benchmark: 2/2 runs generated a working app** (`gemini-3.5-flash`): exactly
+  `index.html`, `style.css`, `script.js` in `projectsByJarvis/todo-list-app/`, valid on the first
+  attempt, **23/23** headless-browser and static checks (add, complete, delete, reload persistence).
+  The first verifier run reported 16/18 because of a bug in the verifier (not the app); details and
+  the verifier's negative controls are in the benchmark report §6.1/§6.3.
+* Live AI repair: 2/2 attempted defects repaired after one correction each; the free tier's daily
+  limit (20 requests/model) stopped the run, so no repair rate is claimed.
 
 ## 11. Voice verification
 
@@ -143,12 +154,13 @@ modules loaded by tests (entry points excluded) — **not** 100 %.
 
 See `JARVIS_FINAL_BENCHMARK_REPORT.md`. Highlights: 95 % / 87.5 % fewer outbound requests in mocked
 duplicate-heavy workloads (0 % for distinct prompts); 15/15 defects detected, 0/7 false positives;
-live invalid-key session 1 request / 491 ms (was 6 requests / ~31 s + crash); E2E harness 18/18.
-Live generation and live repair rate: blocked.
+live invalid-key session 1 request / 491 ms (was 6 requests / ~31 s + crash); live To-Do generation
+2/2 runs, 23/23 checks each; live repairs 2/2 measured (rate not established).
 
 ## 15. Remaining limitations
 
-1. Live Gemini success paths unexecuted (no key) — biggest open item.
+1. Live evidence is small (2 E2E runs, 2 repairs): the free tier allows 20 requests per model per day.
+   Repeat `npm run e2e:todo` and `npm run bench:validation:live` on other days before quoting rates.
 2. Voice runs only on Windows and is hardware-unverified.
 3. Static validation ≠ working app; Node projects are never installed or run.
 4. Process-local reliability state only.

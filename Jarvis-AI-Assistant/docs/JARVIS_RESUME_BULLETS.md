@@ -35,14 +35,18 @@ bullet only after you have run the listed command yourself and it succeeded.
    line coverage).**
    *Evidence:* `utils/inputManager.js`, `utils/safePath.js`, `services/voiceService.js`, `coverage.txt`.
 
+6. **Verified end to end against the live Gemini API:** from a single natural-language prompt, Jarvis
+   generated a 3-file To-Do web app that passed **23/23 automated headless-browser and static checks**
+   (add, complete, delete, persistence across reload) in **both live runs**, recovering from transient
+   HTTP 503s without failing a file.
+   *Evidence:* `benchmark-results/live-runs/run1`, `run2` (transcripts, apps, verification JSON).
+   *Wording rule:* say "both live runs" / "2 of 2", never a percentage, until you have more runs.
+
 ## Conditional (run first, then fill in your numbers)
 
-6. *After `npm run e2e:todo` succeeds (ideally repeated):* "Generated a working 3-file To-Do web app
-   from a single prompt in **N/M** live Gemini runs, each verified in a headless browser (add,
-   complete, delete, persistence across reload)."
-
-7. *After `npm run bench:validation:live`:* "The AI self-correction loop repaired **N/15** seeded
-   defects within 3 attempts."
+7. *After a full `npm run bench:validation:live` run:* "The AI self-correction loop repaired **N/15**
+   seeded defects within 3 attempts." (So far 2/2 attempted were repaired; the free tier's daily limit
+   stopped the run, so no rate can be claimed yet.)
 
 8. *After `npm run voice:check` passes on your PC:* "Added Windows speech input/output (System.Speech)
    with push-to-talk, spoken replies and cancellation, sharing the typed command pipeline."

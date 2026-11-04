@@ -6,9 +6,10 @@ your approval, generates each file, validates it, asks Gemini to fix files that 
 (bounded), and writes only validated files. On Windows it can also listen and speak through the
 built-in Windows speech APIs.
 
-> **Status (2026-11-04).** The pipeline is covered by 229 automated tests that use mocked Gemini
-> responses. A live, successful Gemini generation run and physical microphone/speaker tests have
-> **not** been performed yet (no API key or Windows hardware was available). See
+> **Status (2026-11-04).** 229 automated tests (mocked Gemini) pass. Against the live Gemini API,
+> the benchmark To-Do request produced a working 3-file app in both live runs (23/23 browser checks
+> each, `gemini-3.5-flash`). Physical microphone/speaker tests have **not** been performed (no
+> Windows hardware was available). See
 > [`docs/JARVIS_IMPLEMENTATION_STATUS.md`](docs/JARVIS_IMPLEMENTATION_STATUS.md).
 
 ## What it does
@@ -59,7 +60,10 @@ GEMINI_MODEL=gemini-flash-latest
 ```
 
 `.env` is git-ignored. Jarvis never prints the key; it only reports whether one is configured.
-`GEMINI_MODEL` is optional. Run `models` inside Jarvis to see what your key can use.
+`GEMINI_MODEL` is optional. Run `models` inside Jarvis to see what your key can use, and `diagnose`
+to test one: during testing on 2026-11-04, `gemini-flash-latest` and `gemini-3.8-flash` were returning
+503 "high demand" while `gemini-3.5-flash` worked. Free-tier keys are limited to about 20 generation
+requests per model per day; one project costs at least 4 (plan + one per file).
 
 ## Run
 

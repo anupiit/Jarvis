@@ -1,7 +1,7 @@
 {
-  "projectDir": "/tmp/jarvis-selftest-pzQdmF/todo-list-app",
-  "passed": 18,
-  "total": 18,
+  "projectDir": "/tmp/jarvis-selftest-INE6gi/todo-list-app",
+  "passed": 23,
+  "total": 23,
   "browserSkipped": null,
   "checks": [
     {
@@ -46,7 +46,15 @@
       "pass": true
     },
     {
-      "check": "both tasks are displayed",
+      "check": "add task \"Verify task C\" (sentinel, never touched)",
+      "pass": true
+    },
+    {
+      "check": "all tasks are displayed",
+      "pass": true
+    },
+    {
+      "check": "task A has its own completion control",
       "pass": true
     },
     {
@@ -54,7 +62,15 @@
       "pass": true
     },
     {
-      "check": "task B can be deleted",
+      "check": "completing A does not complete the sentinel C",
+      "pass": true
+    },
+    {
+      "check": "task B has its own delete control",
+      "pass": true
+    },
+    {
+      "check": "task B can be deleted (A and C remain)",
       "pass": true
     },
     {
@@ -62,7 +78,7 @@
       "pass": true
     },
     {
-      "check": "after reload, task A is still there",
+      "check": "after reload, tasks A and C are still there",
       "pass": true
     },
     {
@@ -71,6 +87,10 @@
     },
     {
       "check": "after reload, task A is still completed",
+      "pass": true
+    },
+    {
+      "check": "after reload, sentinel C is still not completed",
       "pass": true
     },
     {

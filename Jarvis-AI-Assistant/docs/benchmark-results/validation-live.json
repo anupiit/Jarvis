@@ -1,0 +1,386 @@
+{
+  "environment": {
+    "node": "v22.23.4",
+    "platform": "linux 6.18.44-fc-v233",
+    "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+    "cpus": 4,
+    "date": "2026-11-04T08:24:43.053Z"
+  },
+  "benchmark": "validation-and-self-correction",
+  "corpusSize": 15,
+  "detection": {
+    "detected": 15,
+    "fixAccepted": 15,
+    "perDefect": [
+      {
+        "id": "js-missing-brace",
+        "file": "script.js",
+        "detected": true,
+        "rules": "syntax",
+        "fixAccepted": true,
+        "ms": 2.18
+      },
+      {
+        "id": "js-unterminated-string",
+        "file": "script.js",
+        "detected": true,
+        "rules": "syntax",
+        "fixAccepted": true,
+        "ms": 0.4
+      },
+      {
+        "id": "js-extra-paren",
+        "file": "script.js",
+        "detected": true,
+        "rules": "syntax",
+        "fixAccepted": true,
+        "ms": 3.39
+      },
+      {
+        "id": "js-import-in-classic-script",
+        "file": "script.js",
+        "detected": true,
+        "rules": "syntax",
+        "fixAccepted": true,
+        "ms": 0.91
+      },
+      {
+        "id": "js-require-in-browser",
+        "file": "script.js",
+        "detected": true,
+        "rules": "node-api-in-browser",
+        "fixAccepted": true,
+        "ms": 0.19
+      },
+      {
+        "id": "esm-bad-export",
+        "file": "app.mjs",
+        "detected": true,
+        "rules": "syntax",
+        "fixAccepted": true,
+        "ms": 81.26
+      },
+      {
+        "id": "cjs-bad-arrow",
+        "file": "server.js",
+        "detected": true,
+        "rules": "syntax",
+        "fixAccepted": true,
+        "ms": 0.55
+      },
+      {
+        "id": "json-trailing-comma",
+        "file": "data.json",
+        "detected": true,
+        "rules": "syntax",
+        "fixAccepted": true,
+        "ms": 0.21
+      },
+      {
+        "id": "json-single-quotes",
+        "file": "data.json",
+        "detected": true,
+        "rules": "syntax",
+        "fixAccepted": true,
+        "ms": 0.1
+      },
+      {
+        "id": "css-unclosed-block",
+        "file": "style.css",
+        "detected": true,
+        "rules": "unclosed-block",
+        "fixAccepted": true,
+        "ms": 0.81
+      },
+      {
+        "id": "css-stray-brace",
+        "file": "style.css",
+        "detected": true,
+        "rules": "unexpected-closing-brace",
+        "fixAccepted": true,
+        "ms": 0.03
+      },
+      {
+        "id": "css-missing-colon",
+        "file": "style.css",
+        "detected": true,
+        "rules": "invalid-declaration",
+        "fixAccepted": true,
+        "ms": 0.02
+      },
+      {
+        "id": "html-unclosed-div",
+        "file": "index.html",
+        "detected": true,
+        "rules": "unclosed-tag",
+        "fixAccepted": true,
+        "ms": 1.36
+      },
+      {
+        "id": "html-truncated",
+        "file": "index.html",
+        "detected": true,
+        "rules": "unclosed-tag,truncated",
+        "fixAccepted": true,
+        "ms": 0.1
+      },
+      {
+        "id": "html-markdown-fence",
+        "file": "index.html",
+        "detected": true,
+        "rules": "markdown-fence,truncated",
+        "fixAccepted": true,
+        "ms": 0.13
+      }
+    ],
+    "validationMs": {
+      "n": 15,
+      "mean": 6.109,
+      "p50": 0.4,
+      "p95": 81.26,
+      "max": 81.26
+    }
+  },
+  "falsePositives": {
+    "filesChecked": 7,
+    "flagged": 0,
+    "details": []
+  },
+  "correction": {
+    "mode": "LIVE Gemini (gemini-3.5-flash)",
+    "measured": 0,
+    "repaired": 0,
+    "notRepaired": 0,
+    "notMeasured": [
+      {
+        "id": "js-missing-brace",
+        "error": "QUOTA_EXHAUSTED"
+      },
+      {
+        "id": "js-unterminated-string",
+        "error": "CIRCUIT_OPEN"
+      },
+      {
+        "id": "js-extra-paren",
+        "error": "CIRCUIT_OPEN"
+      },
+      {
+        "id": "js-import-in-classic-script",
+        "error": "CIRCUIT_OPEN"
+      },
+      {
+        "id": "js-require-in-browser",
+        "error": "CIRCUIT_OPEN"
+      },
+      {
+        "id": "esm-bad-export",
+        "error": "CIRCUIT_OPEN"
+      },
+      {
+        "id": "cjs-bad-arrow",
+        "error": "CIRCUIT_OPEN"
+      },
+      {
+        "id": "json-trailing-comma",
+        "error": "CIRCUIT_OPEN"
+      },
+      {
+        "id": "json-single-quotes",
+        "error": "CIRCUIT_OPEN"
+      },
+      {
+        "id": "css-unclosed-block",
+        "error": "CIRCUIT_OPEN"
+      },
+      {
+        "id": "css-stray-brace",
+        "error": "CIRCUIT_OPEN"
+      },
+      {
+        "id": "css-missing-colon",
+        "error": "CIRCUIT_OPEN"
+      },
+      {
+        "id": "html-unclosed-div",
+        "error": "CIRCUIT_OPEN"
+      },
+      {
+        "id": "html-truncated",
+        "error": "CIRCUIT_OPEN"
+      },
+      {
+        "id": "html-markdown-fence",
+        "error": "CIRCUIT_OPEN"
+      }
+    ],
+    "perDefect": [
+      {
+        "id": "js-missing-brace",
+        "repaired": false,
+        "corrections": 0,
+        "ms": 509,
+        "error": "QUOTA_EXHAUSTED",
+        "errorStatus": 429,
+        "quotaIds": [
+          "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+        ]
+      },
+      {
+        "id": "js-unterminated-string",
+        "repaired": false,
+        "corrections": 0,
+        "ms": 1,
+        "error": "CIRCUIT_OPEN",
+        "errorStatus": 429
+      },
+      {
+        "id": "js-extra-paren",
+        "repaired": false,
+        "corrections": 0,
+        "ms": 0,
+        "error": "CIRCUIT_OPEN",
+        "errorStatus": 429
+      },
+      {
+        "id": "js-import-in-classic-script",
+        "repaired": false,
+        "corrections": 0,
+        "ms": 0,
+        "error": "CIRCUIT_OPEN",
+        "errorStatus": 429
+      },
+      {
+        "id": "js-require-in-browser",
+        "repaired": false,
+        "corrections": 0,
+        "ms": 0,
+        "error": "CIRCUIT_OPEN",
+        "errorStatus": 429
+      },
+      {
+        "id": "esm-bad-export",
+        "repaired": false,
+        "corrections": 0,
+        "ms": 0,
+        "error": "CIRCUIT_OPEN",
+        "errorStatus": 429
+      },
+      {
+        "id": "cjs-bad-arrow",
+        "repaired": false,
+        "corrections": 0,
+        "ms": 0,
+        "error": "CIRCUIT_OPEN",
+        "errorStatus": 429
+      },
+      {
+        "id": "json-trailing-comma",
+        "repaired": false,
+        "corrections": 0,
+        "ms": 0,
+        "error": "CIRCUIT_OPEN",
+        "errorStatus": 429
+      },
+      {
+        "id": "json-single-quotes",
+        "repaired": false,
+        "corrections": 0,
+        "ms": 0,
+        "error": "CIRCUIT_OPEN",
+        "errorStatus": 429
+      },
+      {
+        "id": "css-unclosed-block",
+        "repaired": false,
+        "corrections": 0,
+        "ms": 0,
+        "error": "CIRCUIT_OPEN",
+        "errorStatus": 429
+      },
+      {
+        "id": "css-stray-brace",
+        "repaired": false,
+        "corrections": 0,
+        "ms": 0,
+        "error": "CIRCUIT_OPEN",
+        "errorStatus": 429
+      },
+      {
+        "id": "css-missing-colon",
+        "repaired": false,
+        "corrections": 0,
+        "ms": 0,
+        "error": "CIRCUIT_OPEN",
+        "errorStatus": 429
+      },
+      {
+        "id": "html-unclosed-div",
+        "repaired": false,
+        "corrections": 0,
+        "ms": 0,
+        "error": "CIRCUIT_OPEN",
+        "errorStatus": 429
+      },
+      {
+        "id": "html-truncated",
+        "repaired": false,
+        "corrections": 0,
+        "ms": 0,
+        "error": "CIRCUIT_OPEN",
+        "errorStatus": 429
+      },
+      {
+        "id": "html-markdown-fence",
+        "repaired": false,
+        "corrections": 0,
+        "ms": 0,
+        "error": "CIRCUIT_OPEN",
+        "errorStatus": 429
+      }
+    ]
+  },
+  "apiErrorResponses": [
+    {
+      "at": "2026-11-04T08:24:43.045Z",
+      "status": 429,
+      "retryAfter": null,
+      "body": {
+        "error": {
+          "code": 429,
+          "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.6-flash, description: Generate content requests per day limit exceeded on Free Tier. See https://ai.google.dev/gemini-api/docs/rate-limits.\nPlease retry in 23h35m16.952279834s.",
+          "status": "RESOURCE_EXHAUSTED",
+          "details": [
+            {
+              "@type": "type.googleapis.com/google.rpc.Help",
+              "links": [
+                {
+                  "description": "Learn more about Gemini API quotas",
+                  "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+                }
+              ]
+            },
+            {
+              "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+              "violations": [
+                {
+                  "description": "Generate content requests per day limit exceeded on Free Tier. See https://ai.google.dev/gemini-api/docs/rate-limits.",
+                  "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_requests",
+                  "quotaId": "GenerateRequestsPerDayPerProjectPerModel-FreeTier",
+                  "quotaDimensions": {
+                    "location": "global",
+                    "model": "gemini-3.6-flash"
+                  },
+                  "quotaValue": "20"
+                }
+              ]
+            },
+            {
+              "@type": "type.googleapis.com/google.rpc.RetryInfo",
+              "retryDelay": "84916s"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

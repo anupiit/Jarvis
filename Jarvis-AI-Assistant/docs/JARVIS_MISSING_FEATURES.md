@@ -67,7 +67,7 @@ Priority: **P0** = blocks the core workflow or is a security hole · **P1** = re
 | Items | Resolution |
 |---|---|
 | 1–8 (P0) | All fixed and covered by tests. #1/#2 additionally checked against the live endpoint. |
-| 9–22 (P1, generation + Gemini) | Implemented and tested with mocked Gemini; live success paths blocked (no key). |
+| 9–22 (P1, generation + Gemini) | Implemented and tested with mocked Gemini; later verified live (diagnose, 2 E2E runs, 2 live repairs) with the owner's key. |
 | 23–26 (P1, voice) | Implemented; verified only with a fake PowerShell process — not run on Windows hardware. |
 | 27–29 (P1, CLI/tests/bench) | Implemented; 229 tests; benchmarks in `JARVIS_FINAL_BENCHMARK_REPORT.md`. |
 | 30–35 (P2) | Implemented. |

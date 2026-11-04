@@ -16,17 +16,17 @@
 
 | ID | Claim / requirement | Audit files | Audit status | What actually happened (traced) | Final status | Final evidence |
 |---|---|---|---|---|---|---|
-| A1 | NL request → structured blueprint | `models/ProjectPlanner.js` | 3, 6 | Single Gemini prompt; greedy `{…}` regex; no schema validation; any failure → template plan | IMPLEMENTED BUT NOT FULLY VERIFIED | Mocked: `test/projectPlanner.test.js`, e2e. Live blueprint: BLOCKED (no key) |
+| A1 | NL request → structured blueprint | `models/ProjectPlanner.js` | 3, 6 | Single Gemini prompt; greedy `{…}` regex; no schema validation; any failure → template plan | IMPLEMENTED AND VERIFIED | Mocked tests + 2 live runs (`live-runs/run*/transcript.txt`) |
 | A2 | Extract name, purpose, features, stack, file requirements | `ProjectPlanner.js` | 3 | Only via AI; explicit files / forbidden tech / "exactly N" never parsed | IMPLEMENTED AND VERIFIED | `models/RequirementParser.js`, `test/requirementParser.test.js` (7) |
 | A3 | Show full plan before writing | `ProjectPlanner.displayPlan` | 3 | Plan shown, but metadata files written later were never shown | IMPLEMENTED AND VERIFIED | Plan lists every file; `verifyProject()` checks written set; e2e |
 | A4 | Explicit approval, never bypassed | `JarvisController.confirmPlan` | 4 | `startsWith('y')`; `" y"` cancels, `"yellow"` approves, no re-ask; piped `y` lost → crash | IMPLEMENTED AND VERIFIED | `utils/confirm.js`, `test/confirm.test.js`, e2e approval matrix, real CLI run |
 | A5 | Cancellation writes no files | controller | 2 | True by code path, untested | IMPLEMENTED AND VERIFIED | e2e: n/no/N/NO leave the projects folder empty |
 | A6 | Short, sanitized, ≤50-char, Windows-safe names | `ProjectPlanner.createFallbackPlan` | 4 | Fallback = slug of the entire prompt (`a-project-that-manage-my-day-`); AI name unsanitized | IMPLEMENTED AND VERIFIED | `utils/projectNaming.js`, `test/projectNaming.test.js` (8) |
 | A7 | Path traversal protection; outputs stay in projects dir | `FileGenerator` | 5 | `path.join(projectPath, aiName)` — traversal possible | IMPLEMENTED AND VERIFIED | `utils/safePath.js`, safePath + fileGenerator traversal tests |
-| A8 | Exact requested files only (index.html/style.css/script.js) | `FileGenerator`, `ProjectPlanner` | 4 | `styles.css` hard-coded; `package.json`/README/.gitignore always added | IMPLEMENTED AND VERIFIED (mocked AI) | e2e "exactly three files"; disobedient-AI planner test |
+| A8 | Exact requested files only (index.html/style.css/script.js) | `FileGenerator`, `ProjectPlanner` | 4 | `styles.css` hard-coded; `package.json`/README/.gitignore always added | IMPLEMENTED AND VERIFIED | e2e "exactly three files"; 2 live runs wrote exactly the 3 files |
 | A9 | HTML references the exact CSS/JS names | `FileGenerator.getSpecificRequirements` | 4 | Prompt hard-codes `styles.css` | IMPLEMENTED AND VERIFIED (mocked AI) | validator `broken-reference`/`missing-reference`; styles.css→style.css correction test |
 | A10 | Static validation of generated code | — | 5 | None | IMPLEMENTED AND VERIFIED | `services/codeValidator.js`; 33 tests; 15/15 defects; 0/7 false positives |
-| A11 | Bounded AI self-correction (≤3) | — | 5 | None | IMPLEMENTED AND VERIFIED (mocked); live repair rate BLOCKED | `models/SelfCorrector.js`, `test/selfCorrector.test.js` (7) |
+| A11 | Bounded AI self-correction (≤3) | — | 5 | None | IMPLEMENTED AND VERIFIED (mocked); live 2/2 repairs, rate not established | `models/SelfCorrector.js`, `test/selfCorrector.test.js` (7), `validation-live.json` |
 | A12 | Preserve valid existing files when candidate invalid | — | 5 | `writeFileSync` overwrites directly | IMPLEMENTED AND VERIFIED | `utils/atomicWrite.js`; preservation + rename-failure tests |
 | A13 | Clear generation summary | `FileGenerator` | 4 | Prints "COMPLETED" even when every file fell back to a template | IMPLEMENTED AND VERIFIED | `FileGenerator.printSummary`; "PROJECT INCOMPLETE" tests |
 
@@ -36,8 +36,8 @@
 |---|---|---|---|---|---|---|
 | B1 | `.env` loaded before services; correct key var | `config/config.js` | 4 | Loads from `cwd`, not app dir | IMPLEMENTED AND VERIFIED | `test/config.test.js` (started from another cwd) |
 | B2 | Configurable model | — | 5 | Hard-coded retired `gemini-2.0-flash-exp` → 404 | IMPLEMENTED AND VERIFIED | `GEMINI_MODEL` (default `gemini-flash-latest`); config test |
-| B3 | Correct endpoint / request / response schema | `geminiService.js` | 3 | Shape OK; key in URL; `parts[0]` only; finishReason ignored; 2048 tokens | IMPLEMENTED AND VERIFIED (schema, local HTTP); live success BLOCKED | `services/geminiClient.js`, `test/geminiClient.test.js` (11) |
-| B4 | Model discovery (ListModels + generation probe) | — | 5 | None | IMPLEMENTED BUT NOT FULLY VERIFIED | `services/modelDiscovery.js`; mocked tests; live valid-key list BLOCKED |
+| B3 | Correct endpoint / request / response schema | `geminiService.js` | 3 | Shape OK; key in URL; `parts[0]` only; finishReason ignored; 2048 tokens | IMPLEMENTED AND VERIFIED | `services/geminiClient.js`, `test/geminiClient.test.js` (11); live generation succeeded |
+| B4 | Model discovery (ListModels + generation probe) | — | 5 | None | IMPLEMENTED AND VERIFIED | `services/modelDiscovery.js`; live ListModels (60) + probes (`live-diagnose.txt`) |
 | B5 | Error classification (400/401/403/404/408/429/5xx/DNS/reset/timeout) | — | 5 | All errors treated identically | IMPLEMENTED AND VERIFIED | `services/geminiErrors.js` (17 tests); live 400 API_KEY_INVALID + 403 |
 | B6 | Retry: exponential, bounded, jitter, Retry-After (s / HTTP-date / RetryInfo) | `geminiService.js` | 4 | 5 blind retries, no jitter, Retry-After ignored, permanent errors retried | IMPLEMENTED AND VERIFIED | `utils/retry.js` (8) + engine retry tests |
 | B7 | Long retry delay returns control instead of freezing | — | 5 | — | IMPLEMENTED AND VERIFIED | engine + e2e "very long Retry-After" tests |
@@ -71,7 +71,7 @@
 | D4 | No shell injection | 4 | IMPLEMENTED AND VERIFIED | no `exec`/shell anywhere; voice injection test |
 | D5 | No secret logging | 2 | IMPLEMENTED AND VERIFIED | `utils/redact.js`; config/errors/processSafety tests |
 | D6 | Automated regression tests | 5 | IMPLEMENTED AND VERIFIED | 229 tests, 21 files, 94.91 % line coverage |
-| D7 | "AI-powered generation of complete web applications" (README) | 2 | IMPLEMENTED BUT NOT FULLY VERIFIED | Live run BLOCKED; harness self-test 18/18 |
+| D7 | "AI-powered generation of complete web applications" (README) | 2 | IMPLEMENTED AND VERIFIED (web apps) | 2/2 live To-Do runs, 23/23 checks each |
 | D8 | "Fullstack" generation (README examples) | 6 | PARTIALLY IMPLEMENTED | Not demonstrated and not claimed |
 
 ## E. Previously reported figures (from the brief)
