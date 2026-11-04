@@ -200,6 +200,14 @@ Observed:
 5. The piped `y` was lost; `readline was closed` → **uncaught `ERR_USE_AFTER_CLOSE` stack trace** (J2).
 6. No files were written in this run only because readline crashed first.
 
+Evidence in previously committed Jarvis output (found later with the new validator):
+* `projectsByJarvis/anup-calculator-app/components/Button.js` starts with a stray ```` ```javascript ```` fence,
+  has no closing fence and ends mid-tag (`</calculator-`) at ~7.5 KB — consistent with the old 2048-token output
+  limit (G4) and the fence-extraction bug (F9). The old pipeline wrote it without validation (F5) and it does not
+  parse. `index.html` of that project never loads `components/Button.js` or `components/Display.js` (F4).
+* `projectsByJarvis/a-project-that-manage-my-day-/` contains `package.json`, `README.md`, `.gitignore` and
+  `styles.css` that were added automatically (F2, P1).
+
 Live Gemini endpoint checks performed during the audit (no valid key is available in this environment):
 * `GET /v1beta/models` without key → `403 PERMISSION_DENIED` ("unregistered callers").
 * `POST …:generateContent` with an invalid key → `400 INVALID_ARGUMENT`, `ErrorInfo.reason = API_KEY_INVALID`.
