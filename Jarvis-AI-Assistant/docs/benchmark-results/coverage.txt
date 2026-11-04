@@ -2,1375 +2,1375 @@ TAP version 13
 # Subtest: writes content and creates missing parent directories
 ok 1 - writes content and creates missing parent directories
   ---
-  duration_ms: 6.161941
+  duration_ms: 10.214431
   type: 'test'
   ...
 # Subtest: replaces an existing file atomically
 ok 2 - replaces an existing file atomically
   ---
-  duration_ms: 2.573363
+  duration_ms: 2.105551
   type: 'test'
   ...
 # Subtest: a failed rename leaves the original file intact and removes the temp file
 ok 3 - a failed rename leaves the original file intact and removes the temp file
   ---
-  duration_ms: 2.197354
+  duration_ms: 5.029527
   type: 'test'
   ...
 # Subtest: temporary file names are unique per write
 ok 4 - temporary file names are unique per write
   ---
-  duration_ms: 0.408049
+  duration_ms: 0.398894
   type: 'test'
   ...
 # Subtest: stale temp files from a crashed run are cleaned up (only ours)
 ok 5 - stale temp files from a crashed run are cleaned up (only ours)
   ---
-  duration_ms: 1.283122
+  duration_ms: 1.109407
   type: 'test'
   ...
 # Subtest: reference To-Do app (3 files) validates cleanly with references checked
 ok 6 - reference To-Do app (3 files) validates cleanly with references checked
   ---
-  duration_ms: 9.594889
+  duration_ms: 14.993718
   type: 'test'
   ...
 # Subtest: defect corpus: detects js-missing-brace and accepts its fix
 ok 7 - defect corpus: detects js-missing-brace and accepts its fix
   ---
-  duration_ms: 1.319234
+  duration_ms: 1.400513
   type: 'test'
   ...
 # Subtest: defect corpus: detects js-unterminated-string and accepts its fix
 ok 8 - defect corpus: detects js-unterminated-string and accepts its fix
   ---
-  duration_ms: 0.319722
+  duration_ms: 0.519348
   type: 'test'
   ...
 # Subtest: defect corpus: detects js-extra-paren and accepts its fix
 ok 9 - defect corpus: detects js-extra-paren and accepts its fix
   ---
-  duration_ms: 0.358887
+  duration_ms: 0.23608
   type: 'test'
   ...
 # Subtest: defect corpus: detects js-import-in-classic-script and accepts its fix
 ok 10 - defect corpus: detects js-import-in-classic-script and accepts its fix
   ---
-  duration_ms: 0.29516
+  duration_ms: 0.417204
   type: 'test'
   ...
 # Subtest: defect corpus: detects js-require-in-browser and accepts its fix
 ok 11 - defect corpus: detects js-require-in-browser and accepts its fix
   ---
-  duration_ms: 0.159599
+  duration_ms: 0.195609
   type: 'test'
   ...
 # Subtest: defect corpus: detects esm-bad-export and accepts its fix
 ok 12 - defect corpus: detects esm-bad-export and accepts its fix
   ---
-  duration_ms: 84.626152
+  duration_ms: 90.189197
   type: 'test'
   ...
 # Subtest: defect corpus: detects cjs-bad-arrow and accepts its fix
 ok 13 - defect corpus: detects cjs-bad-arrow and accepts its fix
   ---
-  duration_ms: 0.871994
+  duration_ms: 0.934273
   type: 'test'
   ...
 # Subtest: defect corpus: detects json-trailing-comma and accepts its fix
 ok 14 - defect corpus: detects json-trailing-comma and accepts its fix
   ---
-  duration_ms: 0.433144
+  duration_ms: 0.702347
   type: 'test'
   ...
 # Subtest: defect corpus: detects json-single-quotes and accepts its fix
 ok 15 - defect corpus: detects json-single-quotes and accepts its fix
   ---
-  duration_ms: 0.172597
+  duration_ms: 0.286024
   type: 'test'
   ...
 # Subtest: defect corpus: detects css-unclosed-block and accepts its fix
 ok 16 - defect corpus: detects css-unclosed-block and accepts its fix
   ---
-  duration_ms: 0.256523
+  duration_ms: 0.437207
   type: 'test'
   ...
 # Subtest: defect corpus: detects css-stray-brace and accepts its fix
 ok 17 - defect corpus: detects css-stray-brace and accepts its fix
   ---
-  duration_ms: 0.121289
+  duration_ms: 0.154028
   type: 'test'
   ...
 # Subtest: defect corpus: detects css-missing-colon and accepts its fix
 ok 18 - defect corpus: detects css-missing-colon and accepts its fix
   ---
-  duration_ms: 0.128685
+  duration_ms: 0.184365
   type: 'test'
   ...
 # Subtest: defect corpus: detects html-unclosed-div and accepts its fix
 ok 19 - defect corpus: detects html-unclosed-div and accepts its fix
   ---
-  duration_ms: 0.561361
+  duration_ms: 0.748791
   type: 'test'
   ...
 # Subtest: defect corpus: detects html-truncated and accepts its fix
 ok 20 - defect corpus: detects html-truncated and accepts its fix
   ---
-  duration_ms: 0.271898
+  duration_ms: 0.395686
   type: 'test'
   ...
 # Subtest: defect corpus: detects html-markdown-fence and accepts its fix
 ok 21 - defect corpus: detects html-markdown-fence and accepts its fix
   ---
-  duration_ms: 0.236954
+  duration_ms: 0.325742
   type: 'test'
   ...
 # Subtest: JavaScript: CommonJS allows require/module.exports and top-level return
 ok 22 - JavaScript: CommonJS allows require/module.exports and top-level return
   ---
-  duration_ms: 0.238166
+  duration_ms: 0.324373
   type: 'test'
   ...
 # Subtest: JavaScript: ES module syntax is checked with node --check
 ok 23 - JavaScript: ES module syntax is checked with node --check
   ---
-  duration_ms: 68.872866
+  duration_ms: 93.779061
   type: 'test'
   ...
 # Subtest: JavaScript: syntax errors report a line number and truncation hint
 ok 24 - JavaScript: syntax errors report a line number and truncation hint
   ---
-  duration_ms: 0.504645
+  duration_ms: 0.415861
   type: 'test'
   ...
 # Subtest: JavaScript: forbidden technologies are flagged from the request constraints
 ok 25 - JavaScript: forbidden technologies are flagged from the request constraints
   ---
-  duration_ms: 33.456344
+  duration_ms: 41.43153
   type: 'test'
   ...
 # Subtest: JavaScript: element ids missing from the HTML produce a warning (not an error)
 ok 26 - JavaScript: element ids missing from the HTML produce a warning (not an error)
   ---
-  duration_ms: 0.499525
+  duration_ms: 0.587067
   type: 'test'
   ...
 # Subtest: JSON: valid and invalid
 ok 27 - JSON: valid and invalid
   ---
-  duration_ms: 0.262987
+  duration_ms: 0.286654
   type: 'test'
   ...
 # Subtest: CSS: nested at-rules, custom properties, url(data:...;) and strings are handled
 ok 28 - CSS: nested at-rules, custom properties, url(data:...;) and strings are handled
   ---
-  duration_ms: 0.282851
+  duration_ms: 0.236512
   type: 'test'
   ...
 # Subtest: CSS: unclosed comment and trailing content (truncation) are errors
 ok 29 - CSS: unclosed comment and trailing content (truncation) are errors
   ---
-  duration_ms: 0.183092
+  duration_ms: 0.201307
   type: 'test'
   ...
 # Subtest: HTML: optional end tags (p, li, td) are not false positives
 ok 30 - HTML: optional end tags (p, li, td) are not false positives
   ---
-  duration_ms: 0.320683
+  duration_ms: 0.311735
   type: 'test'
   ...
 # Subtest: HTML: mismatched closing tag and unterminated attribute are errors
 ok 31 - HTML: mismatched closing tag and unterminated attribute are errors
   ---
-  duration_ms: 0.209715
+  duration_ms: 0.199892
   type: 'test'
   ...
 # Subtest: HTML: wrong stylesheet name (styles.css vs style.css) is a broken reference with a suggestion
 ok 32 - HTML: wrong stylesheet name (styles.css vs style.css) is a broken reference with a suggestion
   ---
-  duration_ms: 0.704591
+  duration_ms: 0.887578
   type: 'test'
   ...
 # Subtest: HTML: CDN script is rejected when external libraries are forbidden
 ok 33 - HTML: CDN script is rejected when external libraries are forbidden
   ---
-  duration_ms: 0.683196
+  duration_ms: 0.691477
   type: 'test'
   ...
 # Subtest: HTML: inline <script> and <style> are validated too
 ok 34 - HTML: inline <script> and <style> are validated too
   ---
-  duration_ms: 0.578043
+  duration_ms: 0.464219
   type: 'test'
   ...
 # Subtest: generic: empty, prose prefix, placeholder and truncation flags
 ok 35 - generic: empty, prose prefix, placeholder and truncation flags
   ---
-  duration_ms: 0.463669
+  duration_ms: 0.591942
   type: 'test'
   ...
 # Subtest: markdown: unclosed fence is detected, balanced fences are fine
 ok 36 - markdown: unclosed fence is detected, balanced fences are fine
   ---
-  duration_ms: 0.283811
+  duration_ms: 0.269853
   type: 'test'
   ...
 # Subtest: regression: committed sample components/Button.js (truncated, stray fence) is rejected
 ok 37 - regression: committed sample components/Button.js (truncated, stray fence) is rejected
   ---
-  duration_ms: 1.021314
+  duration_ms: 1.090909
   type: 'test'
   ...
 # Subtest: extraction: fenced blocks, language preference, unclosed fence, prose around HTML
 ok 38 - extraction: fenced blocks, language preference, unclosed fence, prose around HTML
   ---
-  duration_ms: 0.793581
+  duration_ms: 1.45236
   type: 'test'
   ...
 # Subtest: required CLI commands
 ok 39 - required CLI commands
   ---
-  duration_ms: 1.246995
+  duration_ms: 1.948107
   type: 'test'
   ...
 # Subtest: commands are case/punctuation-insensitive (speech transcripts)
 ok 40 - commands are case/punctuation-insensitive (speech transcripts)
   ---
-  duration_ms: 0.220244
+  duration_ms: 0.429536
   type: 'test'
   ...
 # Subtest: create keeps the original description text
 ok 41 - create keeps the original description text
   ---
-  duration_ms: 3.123156
+  duration_ms: 4.231931
   type: 'test'
   ...
 # Subtest: greetings are recognized; other text is a general question
 ok 42 - greetings are recognized; other text is a general question
   ---
-  duration_ms: 0.412049
+  duration_ms: 0.430206
   type: 'test'
   ...
 # Subtest: open and diagnose take arguments (case preserved)
 ok 43 - open and diagnose take arguments (case preserved)
   ---
-  duration_ms: 0.337173
+  duration_ms: 0.292595
   type: 'test'
   ...
 # Subtest: a bare y/n with no pending question is not sent to Gemini
 ok 44 - a bare y/n with no pending question is not sent to Gemini
   ---
-  duration_ms: 0.168079
+  duration_ms: 0.143459
   type: 'test'
   ...
 # Subtest: empty and null input
 ok 45 - empty and null input
   ---
-  duration_ms: 0.11243
+  duration_ms: 0.106278
   type: 'test'
   ...
 # Subtest: config resolves .env and projects dir relative to the app directory, not cwd
 ok 46 - config resolves .env and projects dir relative to the app directory, not cwd
   ---
-  duration_ms: 1.067762
+  duration_ms: 1.066079
   type: 'test'
   ...
 # Subtest: config loads GEMINI_API_KEY / GEMINI_MODEL from the environment and normalizes "models/" prefix
 ok 47 - config loads GEMINI_API_KEY / GEMINI_MODEL from the environment and normalizes "models/" prefix
   ---
-  duration_ms: 48.018205
+  duration_ms: 54.806449
   type: 'test'
   ...
 # Subtest: config is loaded identically when Jarvis is started from another directory
 ok 48 - config is loaded identically when Jarvis is started from another directory
   ---
-  duration_ms: 50.130948
+  duration_ms: 56.93354
   type: 'test'
   ...
 # Subtest: validateConfig reports a missing key without revealing values
 ok 49 - validateConfig reports a missing key without revealing values
   ---
-  duration_ms: 0.589378
+  duration_ms: 0.837401
   type: 'test'
   ...
 # Subtest: validateConfig rejects placeholders, whitespace and bad model names
 ok 50 - validateConfig rejects placeholders, whitespace and bad model names
   ---
-  duration_ms: 0.294196
+  duration_ms: 0.525952
   type: 'test'
   ...
 # Subtest: .env is git-ignored and .env.example contains placeholders only
 ok 51 - .env is git-ignored and .env.example contains placeholders only
   ---
-  duration_ms: 0.322579
+  duration_ms: 0.509795
   type: 'test'
   ...
 # Subtest: logger redacts the configured key and key-shaped strings
 ok 52 - logger redacts the configured key and key-shaped strings
   ---
-  duration_ms: 1.305054
+  duration_ms: 1.46737
   type: 'test'
   ...
 # Subtest: y / yes approve in any case, with surrounding whitespace
 ok 53 - y / yes approve in any case, with surrounding whitespace
   ---
-  duration_ms: 1.219564
+  duration_ms: 1.967403
   type: 'test'
   ...
 # Subtest: n / no cancel in any case
 ok 54 - n / no cancel in any case
   ---
-  duration_ms: 0.249747
+  duration_ms: 0.428761
   type: 'test'
   ...
 # Subtest: anything else is invalid and must be re-asked (no accidental approval)
 ok 55 - anything else is invalid and must be re-asked (no accidental approval)
   ---
-  duration_ms: 0.136522
+  duration_ms: 0.277152
   type: 'test'
   ...
 # Subtest: E2E 1+6: request → plan → approval → generation → validation, exactly three files
 ok 56 - E2E 1+6: request → plan → approval → generation → validation, exactly three files
   ---
-  duration_ms: 36.907976
+  duration_ms: 86.506139
   type: 'test'
   ...
 # Subtest: approval matrix: y / yes / Y / YES approve and actually generate
 ok 57 - approval matrix: y / yes / Y / YES approve and actually generate
   ---
-  duration_ms: 45.013427
+  duration_ms: 79.756938
   type: 'test'
   ...
 # Subtest: E2E 4: n / no / N / NO cancel and write nothing (no project folder, no generation calls)
 ok 58 - E2E 4: n / no / N / NO cancel and write nothing (no project folder, no generation calls)
   ---
-  duration_ms: 4.994037
+  duration_ms: 7.647286
   type: 'test'
   ...
 # Subtest: invalid answers ask again, then the valid answer is honoured
 ok 59 - invalid answers ask again, then the valid answer is honoured
   ---
-  duration_ms: 12.156436
+  duration_ms: 9.814565
   type: 'test'
   ...
 # Subtest: input ending at the approval prompt cancels safely (no files, no crash)
 ok 60 - input ending at the approval prompt cancels safely (no files, no crash)
   ---
-  duration_ms: 3.713347
+  duration_ms: 5.263941
   type: 'test'
   ...
 # Subtest: E2E 2: Gemini failure → useful diagnostic → back at the prompt → recovery on the next request
 ok 61 - E2E 2: Gemini failure → useful diagnostic → back at the prompt → recovery on the next request
   ---
-  duration_ms: 14.644897
+  duration_ms: 27.653381
   type: 'test'
   ...
 # Subtest: model not found → diagnostic tells the user to run "models"
 ok 62 - model not found → diagnostic tells the user to run "models"
   ---
-  duration_ms: 1.705192
+  duration_ms: 3.772383
   type: 'test'
   ...
 # Subtest: very long Retry-After returns control instead of freezing the CLI
 ok 63 - very long Retry-After returns control instead of freezing the CLI
   ---
-  duration_ms: 2.152958
+  duration_ms: 2.215741
   type: 'test'
   ...
 # Subtest: E2E 3: generated syntax error → AI correction → validated project
 ok 64 - E2E 3: generated syntax error → AI correction → validated project
   ---
-  duration_ms: 12.751152
+  duration_ms: 12.153782
   type: 'test'
   ...
 # Subtest: E2E 5: voice input → transcription → same command pipeline (create, typed approval)
 ok 65 - E2E 5: voice input → transcription → same command pipeline (create, typed approval)
   ---
-  duration_ms: 7.886785
+  duration_ms: 9.158272
   type: 'test'
   ...
 # Subtest: listen: one-shot push-to-talk processes the transcription like typed input
 ok 66 - listen: one-shot push-to-talk processes the transcription like typed input
   ---
-  duration_ms: 1.163249
+  duration_ms: 1.130347
   type: 'test'
   ...
 # Subtest: voice recognition failure → hint, back at the prompt; typed fallback works in voice mode
 ok 67 - voice recognition failure → hint, back at the prompt; typed fallback works in voice mode
   ---
-  duration_ms: 1.015896
+  duration_ms: 1.201743
   type: 'test'
   ...
 # Subtest: Ctrl+C while listening cancels recognition and keeps Jarvis running
 ok 68 - Ctrl+C while listening cancels recognition and keeps Jarvis running
   ---
-  duration_ms: 11.13578
+  duration_ms: 12.004846
   type: 'test'
   ...
 # Subtest: speech recognition unavailable → clear explanation, typed input unaffected
 ok 69 - speech recognition unavailable → clear explanation, typed input unaffected
   ---
-  duration_ms: 0.985148
+  duration_ms: 1.356152
   type: 'test'
   ...
 # Subtest: voice on / voice off toggle spoken replies
 ok 70 - voice on / voice off toggle spoken replies
   ---
-  duration_ms: 1.234936
+  duration_ms: 1.457347
   type: 'test'
   ...
 # Subtest: "hi" gets a greeting; general questions are answered by Gemini; without a key they get an explanation
 ok 71 - "hi" gets a greeting; general questions are answered by Gemini; without a key they get an explanation
   ---
-  duration_ms: 1.953117
+  duration_ms: 2.31914
   type: 'test'
   ...
 # Subtest: a single stdin reader across commands, approvals and voice mode (no duplicate listeners)
 ok 72 - a single stdin reader across commands, approvals and voice mode (no duplicate listeners)
   ---
-  duration_ms: 1.914023
+  duration_ms: 1.978275
   type: 'test'
   ...
 # Subtest: stats show real request counts without prompt contents
 ok 73 - stats show real request counts without prompt contents
   ---
-  duration_ms: 6.92146
+  duration_ms: 7.766873
   type: 'test'
   ...
 # Subtest: models command lists the live model list and flags a missing configured model
 ok 74 - models command lists the live model list and flags a missing configured model
   ---
-  duration_ms: 1.58585
+  duration_ms: 2.473514
   type: 'test'
   ...
 # Subtest: diagnose: ListModels OK but generation fails → reports the real failure and live alternatives
 ok 75 - diagnose: ListModels OK but generation fails → reports the real failure and live alternatives
   ---
-  duration_ms: 10.235205
+  duration_ms: 11.099654
   type: 'test'
   ...
 # Subtest: open refuses paths outside the workspace
 ok 76 - open refuses paths outside the workspace
   ---
-  duration_ms: 1.285159
+  duration_ms: 1.270491
   type: 'test'
   ...
 # Subtest: three-file HTML/CSS/JS app: exactly the requested files, correct names and connections
 ok 77 - three-file HTML/CSS/JS app: exactly the requested files, correct names and connections
   ---
-  duration_ms: 33.488428
+  duration_ms: 59.123852
   type: 'test'
   ...
 # Subtest: missing parent directories (projects root and nested paths) are created
 ok 78 - missing parent directories (projects root and nested paths) are created
   ---
-  duration_ms: 5.138841
+  duration_ms: 13.362597
   type: 'test'
   ...
 # Subtest: long descriptions still produce a short project folder
 ok 79 - long descriptions still produce a short project folder
   ---
-  duration_ms: 0.634308
+  duration_ms: 0.779269
   type: 'test'
   ...
 # Subtest: path traversal attempts never write outside the projects directory
 ok 80 - path traversal attempts never write outside the projects directory
   ---
-  duration_ms: 4.077372
+  duration_ms: 4.796393
   type: 'test'
   ...
 # Subtest: syntax error → AI correction → validated file written
 ok 81 - syntax error → AI correction → validated file written
   ---
-  duration_ms: 10.99967
+  duration_ms: 9.873265
   type: 'test'
   ...
 # Subtest: HTML referencing styles.css instead of style.css is corrected
 ok 82 - HTML referencing styles.css instead of style.css is corrected
   ---
-  duration_ms: 6.099939
+  duration_ms: 7.963738
   type: 'test'
   ...
 # Subtest: unrecoverable invalid output: nothing written for that file, existing valid file preserved
 ok 83 - unrecoverable invalid output: nothing written for that file, existing valid file preserved
   ---
-  duration_ms: 5.617573
+  duration_ms: 6.800154
   type: 'test'
   ...
 # Subtest: fatal Gemini error stops generation; remaining files are skipped and an empty new folder is removed
 ok 84 - fatal Gemini error stops generation; remaining files are skipped and an empty new folder is removed
   ---
-  duration_ms: 1.640855
+  duration_ms: 3.171691
   type: 'test'
   ...
 # Subtest: final verification reports pre-existing extra files without deleting them
 ok 85 - final verification reports pre-existing extra files without deleting them
   ---
-  duration_ms: 6.261236
+  duration_ms: 7.839802
   type: 'test'
   ...
 # Subtest: generateContent sends the documented request: POST /v1beta/models/{model}:generateContent, key in x-goog-api-key header
 ok 86 - generateContent sends the documented request: POST /v1beta/models/{model}:generateContent, key in x-goog-api-key header
   ---
-  duration_ms: 28.837355
+  duration_ms: 32.599325
   type: 'test'
   ...
 # Subtest: response parsing joins text parts and skips thought parts
 ok 87 - response parsing joins text parts and skips thought parts
   ---
-  duration_ms: 0.343477
+  duration_ms: 0.378873
   type: 'test'
   ...
 # Subtest: MAX_TOKENS with partial text is returned flagged as truncated
 ok 88 - MAX_TOKENS with partial text is returned flagged as truncated
   ---
-  duration_ms: 0.181486
+  duration_ms: 0.161423
   type: 'test'
   ...
 # Subtest: thinking-only MAX_TOKENS candidate → EMPTY_RESPONSE with a clear reason
 ok 89 - thinking-only MAX_TOKENS candidate → EMPTY_RESPONSE with a clear reason
   ---
-  duration_ms: 1.046975
+  duration_ms: 1.431104
   type: 'test'
   ...
 # Subtest: blocked prompt → BLOCKED; invalid JSON → INVALID_RESPONSE
 ok 90 - blocked prompt → BLOCKED; invalid JSON → INVALID_RESPONSE
   ---
-  duration_ms: 0.329725
+  duration_ms: 0.387141
   type: 'test'
   ...
 # Subtest: HTTP error responses are classified (404 model not found)
 ok 91 - HTTP error responses are classified (404 model not found)
   ---
-  duration_ms: 9.867023
+  duration_ms: 9.322669
   type: 'test'
   ...
 # Subtest: Retry-After header from a real HTTP response reaches the error
 ok 92 - Retry-After header from a real HTTP response reaches the error
   ---
-  duration_ms: 4.497808
+  duration_ms: 3.260677
   type: 'test'
   ...
 # Subtest: timeout aborts a stalled request and is classified as TIMEOUT
 ok 93 - timeout aborts a stalled request and is classified as TIMEOUT
   ---
-  duration_ms: 151.710336
+  duration_ms: 154.979975
   type: 'test'
   ...
 # Subtest: connection refused is classified as NETWORK
 ok 94 - connection refused is classified as NETWORK
   ---
-  duration_ms: 2.107804
+  duration_ms: 2.238237
   type: 'test'
   ...
 # Subtest: DNS failure (ENOTFOUND) is classified as DNS with an actionable hint
 ok 95 - DNS failure (ENOTFOUND) is classified as DNS with an actionable hint
   ---
-  duration_ms: 17.577622
+  duration_ms: 23.992041
   type: 'test'
   ...
 # Subtest: listModels uses GET /v1beta/models with pageSize and header auth
 ok 96 - listModels uses GET /v1beta/models with pageSize and header auth
   ---
-  duration_ms: 4.095038
+  duration_ms: 4.623404
   type: 'test'
   ...
 # Subtest: [captured live] 400 API_KEY_INVALID is classified as AUTH and not retryable
 ok 97 - [captured live] 400 API_KEY_INVALID is classified as AUTH and not retryable
   ---
-  duration_ms: 2.437107
+  duration_ms: 2.590153
   type: 'test'
   ...
 # Subtest: [captured live] 400 unknown field is INVALID_REQUEST, not retryable
 ok 98 - [captured live] 400 unknown field is INVALID_REQUEST, not retryable
   ---
-  duration_ms: 0.563829
+  duration_ms: 0.56812
   type: 'test'
   ...
 # Subtest: [captured live] 403 PERMISSION_DENIED is PERMISSION
 ok 99 - [captured live] 403 PERMISSION_DENIED is PERMISSION
   ---
-  duration_ms: 0.17442
+  duration_ms: 0.27212
   type: 'test'
   ...
 # Subtest: Interactions-style array error body is handled
 ok 100 - Interactions-style array error body is handled
   ---
-  duration_ms: 0.144385
+  duration_ms: 0.256018
   type: 'test'
   ...
 # Subtest: 401 is AUTH
 ok 101 - 401 is AUTH
   ---
-  duration_ms: 0.133657
+  duration_ms: 0.187865
   type: 'test'
   ...
 # Subtest: 404 is MODEL_NOT_FOUND with guidance to run "models"
 ok 102 - 404 is MODEL_NOT_FOUND with guidance to run "models"
   ---
-  duration_ms: 0.184564
+  duration_ms: 0.229675
   type: 'test'
   ...
 # Subtest: 408 and 504 are retryable TIMEOUT
 ok 103 - 408 and 504 are retryable TIMEOUT
   ---
-  duration_ms: 0.160328
+  duration_ms: 0.316128
   type: 'test'
   ...
 # Subtest: 429 per-minute is RATE_LIMITED with RetryInfo delay in ms
 ok 104 - 429 per-minute is RATE_LIMITED with RetryInfo delay in ms
   ---
-  duration_ms: 1.299785
+  duration_ms: 1.815823
   type: 'test'
   ...
 # Subtest: 429 Retry-After header (seconds) is used when RetryInfo is absent
 ok 105 - 429 Retry-After header (seconds) is used when RetryInfo is absent
   ---
-  duration_ms: 0.563699
+  duration_ms: 0.546497
   type: 'test'
   ...
 # Subtest: 429 per-day quota is QUOTA_EXHAUSTED and not retryable
 ok 106 - 429 per-day quota is QUOTA_EXHAUSTED and not retryable
   ---
-  duration_ms: 0.318724
+  duration_ms: 0.423876
   type: 'test'
   ...
 # Subtest: 429 with limit 0 is BILLING_REQUIRED
 ok 107 - 429 with limit 0 is BILLING_REQUIRED
   ---
-  duration_ms: 0.170801
+  duration_ms: 0.190412
   type: 'test'
   ...
 # Subtest: 429 depleted prepayment credits is BILLING_REQUIRED
 ok 108 - 429 depleted prepayment credits is BILLING_REQUIRED
   ---
-  duration_ms: 0.146405
+  duration_ms: 0.148452
   type: 'test'
   ...
 # Subtest: 400 FAILED_PRECONDITION location / billing variants
 ok 109 - 400 FAILED_PRECONDITION location / billing variants
   ---
-  duration_ms: 0.294314
+  duration_ms: 0.286701
   type: 'test'
   ...
 # Subtest: 500/502/503 are retryable SERVER_UNAVAILABLE
 ok 110 - 500/502/503 are retryable SERVER_UNAVAILABLE
   ---
-  duration_ms: 0.177115
+  duration_ms: 1.281348
   type: 'test'
   ...
 # Subtest: non-JSON error bodies still produce a classified error
 ok 111 - non-JSON error bodies still produce a classified error
   ---
-  duration_ms: 0.253557
+  duration_ms: 0.21091
   type: 'test'
   ...
 # Subtest: network errors: ENOTFOUND/EAI_AGAIN → DNS, ECONNRESET → NETWORK, ETIMEDOUT → TIMEOUT
 ok 112 - network errors: ENOTFOUND/EAI_AGAIN → DNS, ECONNRESET → NETWORK, ETIMEDOUT → TIMEOUT
   ---
-  duration_ms: 0.493217
+  duration_ms: 0.485653
   type: 'test'
   ...
 # Subtest: error messages and hints never contain the API key
 ok 113 - error messages and hints never contain the API key
   ---
-  duration_ms: 0.270836
+  duration_ms: 0.359935
   type: 'test'
   ...
 # Subtest: valid request → parsed text, single outbound attempt, documented body
 ok 114 - valid request → parsed text, single outbound attempt, documented body
   ---
-  duration_ms: 3.921265
+  duration_ms: 4.31705
   type: 'test'
   ...
 # Subtest: missing API key → CONFIG error and no request is sent
 ok 115 - missing API key → CONFIG error and no request is sent
   ---
-  duration_ms: 1.084077
+  duration_ms: 1.349018
   type: 'test'
   ...
 # Subtest: cache hit: identical request is served without an outbound call
 ok 116 - cache hit: identical request is served without an outbound call
   ---
-  duration_ms: 0.730826
+  duration_ms: 0.78301
   type: 'test'
   ...
 # Subtest: cache expiration: after TTL the request goes out again
 ok 117 - cache expiration: after TTL the request goes out again
   ---
-  duration_ms: 45.419761
+  duration_ms: 45.900744
   type: 'test'
   ...
 # Subtest: noCache bypasses the cache (used by self-correction)
 ok 118 - noCache bypasses the cache (used by self-correction)
   ---
-  duration_ms: 0.501061
+  duration_ms: 0.508787
   type: 'test'
   ...
 # Subtest: concurrent identical requests are coalesced into one outbound request
 ok 119 - concurrent identical requests are coalesced into one outbound request
   ---
-  duration_ms: 41.12271
+  duration_ms: 41.09016
   type: 'test'
   ...
 # Subtest: coalescing lasts for the whole flight (no 1-second debounce expiry)
 ok 120 - coalescing lasts for the whole flight (no 1-second debounce expiry)
   ---
-  duration_ms: 120.938082
+  duration_ms: 120.73711
   type: 'test'
   ...
 # Subtest: coalesced callers all receive the same failure
 ok 121 - coalesced callers all receive the same failure
   ---
-  duration_ms: 21.455939
+  duration_ms: 22.378351
   type: 'test'
   ...
 # Subtest: FIFO: with one worker, requests are dispatched in submission order
 ok 122 - FIFO: with one worker, requests are dispatched in submission order
   ---
-  duration_ms: 27.99038
+  duration_ms: 28.635442
   type: 'test'
   ...
 # Subtest: concurrency limit is respected
 ok 123 - concurrency limit is respected
   ---
-  duration_ms: 61.502447
+  duration_ms: 63.4121
   type: 'test'
   ...
 # Subtest: queue overflow is rejected with QUEUE_FULL and does not disturb admitted work
 ok 124 - queue overflow is rejected with QUEUE_FULL and does not disturb admitted work
   ---
-  duration_ms: 92.441872
+  duration_ms: 92.756526
   type: 'test'
   ...
 # Subtest: sliding-window rate limit delays dispatch instead of sending
 ok 125 - sliding-window rate limit delays dispatch instead of sending
   ---
-  duration_ms: 151.194543
+  duration_ms: 151.130887
   type: 'test'
   ...
 # Subtest: 429 with RetryInfo is retried after the server delay, then succeeds
 ok 126 - 429 with RetryInfo is retried after the server delay, then succeeds
   ---
-  duration_ms: 102.167163
+  duration_ms: 101.541077
   type: 'test'
   ...
 # Subtest: very long Retry-After returns control immediately with the estimated wait
 ok 127 - very long Retry-After returns control immediately with the estimated wait
   ---
-  duration_ms: 1.426304
+  duration_ms: 1.252668
   type: 'test'
   ...
 # Subtest: daily quota exhausted is not retried and pauses further requests
 ok 128 - daily quota exhausted is not retried and pauses further requests
   ---
-  duration_ms: 1.258235
+  duration_ms: 0.940647
   type: 'test'
   ...
 # Subtest: 503 is retried with backoff until success
 ok 129 - 503 is retried with backoff until success
   ---
-  duration_ms: 13.689909
+  duration_ms: 14.50703
   type: 'test'
   ...
 # Subtest: persistent 503 gives up after the bounded number of retries
 ok 130 - persistent 503 gives up after the bounded number of retries
   ---
-  duration_ms: 29.1609
+  duration_ms: 31.587908
   type: 'test'
   ...
 # Subtest: permanent errors are never retried: 400 invalid request, 404 model not found
 ok 131 - permanent errors are never retried: 400 invalid request, 404 model not found
   ---
-  duration_ms: 0.935085
+  duration_ms: 1.031053
   type: 'test'
   ...
 # Subtest: authentication failure is not retried and latches: later requests fail fast
 ok 132 - authentication failure is not retried and latches: later requests fail fast
   ---
-  duration_ms: 0.507903
+  duration_ms: 0.705297
   type: 'test'
   ...
 # Subtest: DNS failure is retried a bounded number of times then reported with a DNS hint
 ok 133 - DNS failure is retried a bounded number of times then reported with a DNS hint
   ---
-  duration_ms: 13.253763
+  duration_ms: 13.943014
   type: 'test'
   ...
 # Subtest: timeouts are classified and retried
 ok 134 - timeouts are classified and retried
   ---
-  duration_ms: 5.39617
+  duration_ms: 4.646298
   type: 'test'
   ...
 # Subtest: circuit breaker opens after repeated transient failures and recovers via a probe
 ok 135 - circuit breaker opens after repeated transient failures and recovers via a probe
   ---
-  duration_ms: 101.36143
+  duration_ms: 101.761976
   type: 'test'
   ...
 # Subtest: worker slot is released during retry backoff (other work proceeds)
 ok 136 - worker slot is released during retry backoff (other work proceeds)
   ---
-  duration_ms: 202.143598
+  duration_ms: 202.257381
   type: 'test'
   ...
 # Subtest: failed requests do not corrupt queue state
 ok 137 - failed requests do not corrupt queue state
   ---
-  duration_ms: 1.566777
+  duration_ms: 1.344317
   type: 'test'
   ...
 # Subtest: truncated (MAX_TOKENS) output is returned flagged and is not cached
 ok 138 - truncated (MAX_TOKENS) output is returned flagged and is not cached
   ---
-  duration_ms: 0.477994
+  duration_ms: 0.586888
   type: 'test'
   ...
 # Subtest: CONTINUATION responses are followed with the token and an increased output budget
 ok 139 - CONTINUATION responses are followed with the token and an increased output budget
   ---
-  duration_ms: 0.640733
+  duration_ms: 0.795048
   type: 'test'
   ...
 # Subtest: telemetry never contains prompts, responses or the API key
 ok 140 - telemetry never contains prompts, responses or the API key
   ---
-  duration_ms: 5.14852
+  duration_ms: 5.106312
   type: 'test'
   ...
 # Subtest: shutdown cancels queued and in-flight work
 ok 141 - shutdown cancels queued and in-flight work
   ---
-  duration_ms: 11.044695
+  duration_ms: 11.805004
   type: 'test'
   ...
 # Subtest: AbortSignal cancels a queued request
 ok 142 - AbortSignal cancels a queued request
   ---
-  duration_ms: 51.344731
+  duration_ms: 51.274691
   type: 'test'
   ...
 # Subtest: lines typed before a prompt are buffered, not lost (old bug: piped "y" was dropped)
 ok 143 - lines typed before a prompt are buffered, not lost (old bug: piped "y" was dropped)
   ---
-  duration_ms: 6.748579
+  duration_ms: 7.396208
   type: 'test'
   ...
 # Subtest: ask waits for the next line when none is buffered
 ok 144 - ask waits for the next line when none is buffered
   ---
-  duration_ms: 5.650596
+  duration_ms: 5.711879
   type: 'test'
   ...
 # Subtest: end of input resolves pending and future prompts with null (no ERR_USE_AFTER_CLOSE)
 ok 145 - end of input resolves pending and future prompts with null (no ERR_USE_AFTER_CLOSE)
   ---
-  duration_ms: 1.590016
+  duration_ms: 1.502386
   type: 'test'
   ...
 # Subtest: buffered lines are still delivered after input ends
 ok 146 - buffered lines are still delivered after input ends
   ---
-  duration_ms: 5.648868
+  duration_ms: 6.154521
   type: 'test'
   ...
 # Subtest: concurrent asks are rejected instead of creating competing readers
 ok 147 - concurrent asks are rejected instead of creating competing readers
   ---
-  duration_ms: 0.968361
+  duration_ms: 1.106525
   type: 'test'
   ...
 # Subtest: exactly one stdin reader exists for the lifetime of the manager
 ok 148 - exactly one stdin reader exists for the lifetime of the manager
   ---
-  duration_ms: 0.448855
+  duration_ms: 0.462957
   type: 'test'
   ...
 # Subtest: SIGINT is routed to the handler
 ok 149 - SIGINT is routed to the handler
   ---
-  duration_ms: 0.251283
+  duration_ms: 0.235155
   type: 'test'
   ...
 # Subtest: prompts and piped input are echoed for readable transcripts
 ok 150 - prompts and piped input are echoed for readable transcripts
   ---
-  duration_ms: 2.640132
+  duration_ms: 2.730469
   type: 'test'
   ...
 # Subtest: ListModels pagination is followed and models normalized with supported methods
 ok 151 - ListModels pagination is followed and models normalized with supported methods
   ---
-  duration_ms: 10.392755
+  duration_ms: 10.565401
   type: 'test'
   ...
 # Subtest: alternatives come from the live list, exclude non-text models and the current model
 ok 152 - alternatives come from the live list, exclude non-text models and the current model
   ---
-  duration_ms: 0.38663
+  duration_ms: 0.346482
   type: 'test'
   ...
 # Subtest: probe performs a real generateContent call and reports success
 ok 153 - probe performs a real generateContent call and reports success
   ---
-  duration_ms: 2.528561
+  duration_ms: 3.21901
   type: 'test'
   ...
 # Subtest: diagnose: model listed in ListModels but generation fails → probe reports the real error
 ok 154 - diagnose: model listed in ListModels but generation fails → probe reports the real error
   ---
-  duration_ms: 2.355066
+  duration_ms: 2.445718
   type: 'test'
   ...
 # Subtest: diagnose stops at configuration problems without sending requests
 ok 155 - diagnose stops at configuration problems without sending requests
   ---
-  duration_ms: 0.240043
+  duration_ms: 0.288354
   type: 'test'
   ...
 # Subtest: a late socket ECONNRESET is logged and the process keeps running
 ok 156 - a late socket ECONNRESET is logged and the process keeps running
   ---
-  duration_ms: 87.807441
+  duration_ms: 92.965521
   type: 'test'
   ...
 # Subtest: any other uncaught exception exits non-zero with a redacted report
 ok 157 - any other uncaught exception exits non-zero with a redacted report
   ---
-  duration_ms: 40.770854
+  duration_ms: 39.030825
   type: 'test'
   ...
 # Subtest: unhandled promise rejections are reported instead of crashing silently
 ok 158 - unhandled promise rejections are reported instead of crashing silently
   ---
-  duration_ms: 86.106405
+  duration_ms: 88.895685
   type: 'test'
   ...
 # Subtest: benchmark request → todo-list-app (never the whole prompt)
 ok 159 - benchmark request → todo-list-app (never the whole prompt)
   ---
-  duration_ms: 2.785086
+  duration_ms: 2.835956
   type: 'test'
   ...
 # Subtest: brief example: "Create a modern responsive To-Do List application." → todo-list-app
 ok 160 - brief example: "Create a modern responsive To-Do List application." → todo-list-app
   ---
-  duration_ms: 1.223934
+  duration_ms: 1.391447
   type: 'test'
   ...
 # Subtest: regression: "a project that manage my day" no longer becomes the full prompt slug
 ok 161 - regression: "a project that manage my day" no longer becomes the full prompt slug
   ---
-  duration_ms: 0.378823
+  duration_ms: 0.318548
   type: 'test'
   ...
 # Subtest: typical requests produce short meaningful names
 ok 162 - typical requests produce short meaningful names
   ---
-  duration_ms: 0.179578
+  duration_ms: 0.155191
   type: 'test'
   ...
 # Subtest: explicit "called X" wins
 ok 163 - explicit "called X" wins
   ---
-  duration_ms: 0.110559
+  duration_ms: 0.171528
   type: 'test'
   ...
 # Subtest: names are at most 50 characters and cut at a word boundary
 ok 164 - names are at most 50 characters and cut at a word boundary
   ---
-  duration_ms: 0.481259
+  duration_ms: 0.408407
   type: 'test'
   ...
 # Subtest: sanitization: Windows-invalid characters, traversal, unicode, reserved names
 ok 165 - sanitization: Windows-invalid characters, traversal, unicode, reserved names
   ---
-  duration_ms: 0.194845
+  duration_ms: 0.191055
   type: 'test'
   ...
 # Subtest: derivation falls back to the first meaningful words when there is no anchor
 ok 166 - derivation falls back to the first meaningful words when there is no anchor
   ---
-  duration_ms: 0.130584
+  duration_ms: 0.21703
   type: 'test'
   ...
 # Subtest: exact-file request overrides a disobedient AI plan and records every adjustment
 ok 167 - exact-file request overrides a disobedient AI plan and records every adjustment
   ---
-  duration_ms: 10.621789
+  duration_ms: 9.654789
   type: 'test'
   ...
 # Subtest: files are ordered HTML → CSS → JS so later files receive earlier ones as context
 ok 168 - files are ordered HTML → CSS → JS so later files receive earlier ones as context
   ---
-  duration_ms: 4.214246
+  duration_ms: 1.441448
   type: 'test'
   ...
 # Subtest: named files are added when the AI forgets them (non-exact request)
 ok 169 - named files are added when the AI forgets them (non-exact request)
   ---
-  duration_ms: 0.533322
+  duration_ms: 0.477288
   type: 'test'
   ...
 # Subtest: legacy fileStructure format from older prompts is accepted
 ok 170 - legacy fileStructure format from older prompts is accepted
   ---
-  duration_ms: 0.262973
+  duration_ms: 0.291102
   type: 'test'
   ...
 # Subtest: parseBlueprintJson handles fenced JSON and rejects non-JSON
 ok 171 - parseBlueprintJson handles fenced JSON and rejects non-JSON
   ---
-  duration_ms: 0.734211
+  duration_ms: 0.756088
   type: 'test'
   ...
 # Subtest: createProjectPlan uses JSON mode, includes constraints in the prompt, and resolves the path inside projects root
 ok 172 - createProjectPlan uses JSON mode, includes constraints in the prompt, and resolves the path inside projects root
   ---
-  duration_ms: 6.867492
+  duration_ms: 3.669451
   type: 'test'
   ...
 # Subtest: unparseable AI answer → clearly labelled deterministic fallback plan
 ok 173 - unparseable AI answer → clearly labelled deterministic fallback plan
   ---
-  duration_ms: 8.33912
+  duration_ms: 1.180263
   type: 'test'
   ...
 # Subtest: Gemini failure during planning is re-thrown (no silent template plan)
 ok 174 - Gemini failure during planning is re-thrown (no silent template plan)
   ---
-  duration_ms: 0.945811
+  duration_ms: 0.831956
   type: 'test'
   ...
 # Subtest: plan marks files that already exist and will be replaced
 ok 175 - plan marks files that already exist and will be replaced
   ---
-  duration_ms: 2.32859
+  duration_ms: 1.674818
   type: 'test'
   ...
 # Subtest: LRU cache evicts the least recently used entry when full
 ok 176 - LRU cache evicts the least recently used entry when full
   ---
-  duration_ms: 2.249459
+  duration_ms: 2.339075
   type: 'test'
   ...
 # Subtest: LRU cache entries expire after their TTL
 ok 177 - LRU cache entries expire after their TTL
   ---
-  duration_ms: 0.311931
+  duration_ms: 0.318717
   type: 'test'
   ...
 # Subtest: sliding window limiter allows N per window and reports the exact wait
 ok 178 - sliding window limiter allows N per window and reports the exact wait
   ---
-  duration_ms: 0.340797
+  duration_ms: 0.303424
   type: 'test'
   ...
 # Subtest: sliding window limiter honours a global pause (Retry-After)
 ok 179 - sliding window limiter honours a global pause (Retry-After)
   ---
-  duration_ms: 0.144163
+  duration_ms: 0.143338
   type: 'test'
   ...
 # Subtest: bounded queue is FIFO and rejects overflow
 ok 180 - bounded queue is FIFO and rejects overflow
   ---
-  duration_ms: 1.371545
+  duration_ms: 1.387043
   type: 'test'
   ...
 # Subtest: bounded queue: requeueFront keeps retried work first; remove() works
 ok 181 - bounded queue: requeueFront keeps retried work first; remove() works
   ---
-  duration_ms: 0.200291
+  duration_ms: 0.235002
   type: 'test'
   ...
 # Subtest: circuit breaker opens after N consecutive transient failures and fails fast
 ok 182 - circuit breaker opens after N consecutive transient failures and fails fast
   ---
-  duration_ms: 0.40199
+  duration_ms: 0.391582
   type: 'test'
   ...
 # Subtest: circuit breaker half-opens after cooldown, allows one probe, closes on success
 ok 183 - circuit breaker half-opens after cooldown, allows one probe, closes on success
   ---
-  duration_ms: 0.165698
+  duration_ms: 0.168044
   type: 'test'
   ...
 # Subtest: circuit breaker: failed probe re-opens with a longer cooldown
 ok 184 - circuit breaker: failed probe re-opens with a longer cooldown
   ---
-  duration_ms: 0.151687
+  duration_ms: 0.164429
   type: 'test'
   ...
 # Subtest: circuit breaker trip() latches for a fixed time; reset() clears
 ok 185 - circuit breaker trip() latches for a fixed time; reset() clears
   ---
-  duration_ms: 0.216954
+  duration_ms: 0.337661
   type: 'test'
   ...
 # Subtest: telemetry records counters and latency percentiles only
 ok 186 - telemetry records counters and latency percentiles only
   ---
-  duration_ms: 0.585889
+  duration_ms: 0.51076
   type: 'test'
   ...
 # Subtest: benchmark request: exact files, count, stack, forbidden items, features
 ok 187 - benchmark request: exact files, count, stack, forbidden items, features
   ---
-  duration_ms: 8.418021
+  duration_ms: 8.596349
   type: 'test'
   ...
 # Subtest: technology names ending in .js are not mistaken for files
 ok 188 - technology names ending in .js are not mistaken for files
   ---
-  duration_ms: 0.286451
+  duration_ms: 0.565525
   type: 'test'
   ...
 # Subtest: files mentioned without "exactly" are required but not exclusive
 ok 189 - files mentioned without "exactly" are required but not exclusive
   ---
-  duration_ms: 1.228894
+  duration_ms: 1.279175
   type: 'test'
   ...
 # Subtest: "only these files" and "no other files" also mean exact
 ok 190 - "only these files" and "no other files" also mean exact
   ---
-  duration_ms: 0.392586
+  duration_ms: 0.436601
   type: 'test'
   ...
 # Subtest: count/name mismatch produces a visible warning
 ok 191 - count/name mismatch produces a visible warning
   ---
-  duration_ms: 0.295595
+  duration_ms: 0.621555
   type: 'test'
   ...
 # Subtest: positive technology requests are detected
 ok 192 - positive technology requests are detected
   ---
-  duration_ms: 0.18903
+  duration_ms: 0.310791
   type: 'test'
   ...
 # Subtest: plain requests have no constraints
 ok 193 - plain requests have no constraints
   ---
-  duration_ms: 0.123897
+  duration_ms: 0.168636
   type: 'test'
   ...
 # Subtest: Retry-After delay-seconds is interpreted as SECONDS (not ms)
 ok 194 - Retry-After delay-seconds is interpreted as SECONDS (not ms)
   ---
-  duration_ms: 1.219676
+  duration_ms: 1.437759
   type: 'test'
   ...
 # Subtest: Retry-After HTTP-date is converted to a delay from now
 ok 195 - Retry-After HTTP-date is converted to a delay from now
   ---
-  duration_ms: 0.227589
+  duration_ms: 0.307187
   type: 'test'
   ...
 # Subtest: Retry-After garbage or absence returns null
 ok 196 - Retry-After garbage or absence returns null
   ---
-  duration_ms: 0.119023
+  duration_ms: 0.154422
   type: 'test'
   ...
 # Subtest: google.rpc.RetryInfo durations parse to ms
 ok 197 - google.rpc.RetryInfo durations parse to ms
   ---
-  duration_ms: 0.359055
+  duration_ms: 0.372488
   type: 'test'
   ...
 # Subtest: retry hints inside error messages are parsed with units
 ok 198 - retry hints inside error messages are parsed with units
   ---
-  duration_ms: 0.574985
+  duration_ms: 0.5571
   type: 'test'
   ...
 # Subtest: exponential backoff grows, is capped, and jitter stays within [exp/2, exp]
 ok 199 - exponential backoff grows, is capped, and jitter stays within [exp/2, exp]
   ---
-  duration_ms: 0.320366
+  duration_ms: 0.33687
   type: 'test'
   ...
 # Subtest: server-specified delay wins over local backoff, with bounded jitter
 ok 200 - server-specified delay wins over local backoff, with bounded jitter
   ---
-  duration_ms: 0.223593
+  duration_ms: 0.18521
   type: 'test'
   ...
 # Subtest: formatDuration is human readable
 ok 201 - formatDuration is human readable
   ---
-  duration_ms: 0.175031
+  duration_ms: 0.20288
   type: 'test'
   ...
 # Subtest: valid relative paths are normalized to forward slashes
 ok 202 - valid relative paths are normalized to forward slashes
   ---
-  duration_ms: 2.366656
+  duration_ms: 2.387888
   type: 'test'
   ...
 # Subtest: traversal, absolute, drive-letter and UNC paths are rejected
 ok 203 - traversal, absolute, drive-letter and UNC paths are rejected
   ---
-  duration_ms: 0.356543
+  duration_ms: 0.344565
   type: 'test'
   ...
 # Subtest: Windows-invalid names are rejected
 ok 204 - Windows-invalid names are rejected
   ---
-  duration_ms: 0.198886
+  duration_ms: 0.190535
   type: 'test'
   ...
 # Subtest: resolveInside keeps results inside the base and throws PathSecurityError otherwise
 ok 205 - resolveInside keeps results inside the base and throws PathSecurityError otherwise
   ---
-  duration_ms: 2.025796
+  duration_ms: 2.152732
   type: 'test'
   ...
 # Subtest: symlink escaping the base is detected
 ok 206 - symlink escaping the base is detected
   ---
-  duration_ms: 2.788888
+  duration_ms: 2.706705
   type: 'test'
   ...
 # Subtest: first-attempt success: one call, no corrections
 ok 207 - first-attempt success: one call, no corrections
   ---
-  duration_ms: 4.732481
+  duration_ms: 4.365294
   type: 'test'
   ...
 # Subtest: correction success: invalid → errors sent back → valid
 ok 208 - correction success: invalid → errors sent back → valid
   ---
-  duration_ms: 2.031186
+  duration_ms: 1.853989
   type: 'test'
   ...
 # Subtest: maximum corrections reached: stops after 3 and reports the last errors
 ok 209 - maximum corrections reached: stops after 3 and reports the last errors
   ---
-  duration_ms: 0.767484
+  duration_ms: 0.672311
   type: 'test'
   ...
 # Subtest: maxCorrections is configurable (0 = validate only)
 ok 210 - maxCorrections is configurable (0 = validate only)
   ---
-  duration_ms: 0.282056
+  duration_ms: 0.363508
   type: 'test'
   ...
 # Subtest: truncated output → correction asks for the complete file without echoing the partial output
 ok 211 - truncated output → correction asks for the complete file without echoing the partial output
   ---
-  duration_ms: 0.378016
+  duration_ms: 0.35949
   type: 'test'
   ...
 # Subtest: Gemini failure during generation or correction is returned, not thrown
 ok 212 - Gemini failure during generation or correction is returned, not thrown
   ---
-  duration_ms: 0.864172
+  duration_ms: 0.915056
   type: 'test'
   ...
 # Subtest: correction prompt shortens very large previous output
 ok 213 - correction prompt shortens very large previous output
   ---
-  duration_ms: 0.278488
+  duration_ms: 0.273535
   type: 'test'
   ...
 # Subtest: TTS passes text only via environment variable — never in the command line (no injection)
 ok 214 - TTS passes text only via environment variable — never in the command line (no injection)
   ---
-  duration_ms: 8.594133
+  duration_ms: 7.90926
   type: 'test'
   ...
 # Subtest: PowerShell scripts are constants without double quotes (safe as one spawn argument)
 ok 215 - PowerShell scripts are constants without double quotes (safe as one spawn argument)
   ---
-  duration_ms: 0.305672
+  duration_ms: 0.229865
   type: 'test'
   ...
 # Subtest: a new utterance cancels speech already in progress
 ok 216 - a new utterance cancels speech already in progress
   ---
-  duration_ms: 1.640833
+  duration_ms: 1.642132
   type: 'test'
   ...
 # Subtest: spoken text drops markdown/code/emoji and is length-capped
 ok 217 - spoken text drops markdown/code/emoji and is length-capped
   ---
-  duration_ms: 0.841628
+  duration_ms: 0.566527
   type: 'test'
   ...
 # Subtest: speech recognition success returns the transcription and signals "listening"
 ok 218 - speech recognition success returns the transcription and signals "listening"
   ---
-  duration_ms: 2.925759
+  duration_ms: 2.683968
   type: 'test'
   ...
 # Subtest: recognition failures are reported with codes: no microphone, no speech, no recognizer
 ok 219 - recognition failures are reported with codes: no microphone, no speech, no recognizer
   ---
-  duration_ms: 2.126836
+  duration_ms: 2.107474
   type: 'test'
   ...
 # Subtest: an empty transcription is treated as no speech
 ok 220 - an empty transcription is treated as no speech
   ---
-  duration_ms: 0.970851
+  duration_ms: 0.836037
   type: 'test'
   ...
 # Subtest: cancelListening kills the recognizer process and resolves CANCELLED
 ok 221 - cancelListening kills the recognizer process and resolves CANCELLED
   ---
-  duration_ms: 10.397023
+  duration_ms: 10.32149
   type: 'test'
   ...
 # Subtest: a hung recognizer is killed by the guard timeout
 ok 222 - a hung recognizer is killed by the guard timeout
   ---
-  duration_ms: 30.784821
+  duration_ms: 30.567289
   type: 'test'
   ...
 # Subtest: only one recognition at a time
 ok 223 - only one recognition at a time
   ---
-  duration_ms: 0.896436
+  duration_ms: 0.885998
   type: 'test'
   ...
 # Subtest: listening stops any speech first (never transcribe our own voice)
 ok 224 - listening stops any speech first (never transcribe our own voice)
   ---
-  duration_ms: 0.859011
+  duration_ms: 0.90276
   type: 'test'
   ...
 # Subtest: PowerShell missing → POWERSHELL_UNAVAILABLE (no crash)
 ok 225 - PowerShell missing → POWERSHELL_UNAVAILABLE (no crash)
   ---
-  duration_ms: 0.902131
+  duration_ms: 0.905559
   type: 'test'
   ...
 # Subtest: availability probe parses SAPI voices and recognizers
 ok 226 - availability probe parses SAPI voices and recognizers
   ---
-  duration_ms: 1.129752
+  duration_ms: 1.123463
   type: 'test'
   ...
 # Subtest: no recognizer installed → listen refuses without spawning
 ok 227 - no recognizer installed → listen refuses without spawning
   ---
-  duration_ms: 0.750897
+  duration_ms: 0.762597
   type: 'test'
   ...
 # Subtest: non-Windows platforms report unsupported and never spawn processes
 ok 228 - non-Windows platforms report unsupported and never spawn processes
   ---
-  duration_ms: 0.222549
+  duration_ms: 0.209797
   type: 'test'
   ...
 # Subtest: dispose stops speech and listening processes
 ok 229 - dispose stops speech and listening processes
   ---
-  duration_ms: 1.246582
+  duration_ms: 1.340193
   type: 'test'
   ...
 1..229
@@ -1381,7 +1381,7 @@ ok 229 - dispose stops speech and listening processes
 # cancelled 0
 # skipped 0
 # todo 0
-# duration_ms 1672.115874
+# duration_ms 1858.694309
 # start of coverage report
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # file                         | line % | branch % | funcs % | uncovered lines
@@ -1395,7 +1395,7 @@ ok 229 - dispose stops speech and listening processes
 #  FileGenerator.js            |  96.68 |    79.86 |   95.12 | 102-103 180-182 206-207 286-288
 #  ProjectPlanner.js           |  94.38 |    86.03 |   85.11 | 153-155 164-166 169-172 226-230 302-304
 #  RequirementParser.js        | 100.00 |    83.93 |  100.00 | 
-#  SelfCorrector.js            | 100.00 |    93.10 |  100.00 | 
+#  SelfCorrector.js            | 100.00 |    96.43 |  100.00 | 
 # services                     |        |          |         | 
 #  codeValidator.js            |  93.75 |    81.21 |  100.00 | 29 96-98 138-139 147-148 169-170 216-217 346-349 353 369-373 384-390 435-436 444-447
 #  geminiClient.js             |  95.71 |    81.54 |   90.48 | 55-57 75-76 122-123 198-199
@@ -1420,6 +1420,6 @@ ok 229 - dispose stops speech and listening processes
 #  safePath.js                 | 100.00 |    88.89 |  100.00 | 
 #  slidingWindowRateLimiter.js | 100.00 |    93.33 |   87.50 | 
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# all files                    |  94.91 |    80.69 |   90.05 | 
+# all files                    |  94.91 |    80.74 |   90.05 | 
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # end of coverage report

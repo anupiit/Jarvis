@@ -1,0 +1,15 @@
+generateContent with an invalid key
+  → kind=AUTH http=400 status=INVALID_ARGUMENT reason=API_KEY_INVALID retryable=false (325 ms)
+  → API key not valid. Please pass a valid API key.
+ListModels with an invalid key
+  → kind=AUTH http=400 status=INVALID_ARGUMENT reason=API_KEY_INVALID retryable=false (55 ms)
+  → API key not valid. Please pass a valid API key.
+ListModels with no key at all
+  → kind=PERMISSION http=403 status=PERMISSION_DENIED reason=null retryable=false (39 ms)
+  → Method doesn't allow unregistered callers (callers without established identity). Please use API Key or other form of API consumer identity to call this API.
+DNS failure (reserved .invalid host)
+  → kind=NETWORK http=null status=null reason=null retryable=true (260 ms)
+  → Request failed (ERR_PROXY_TUNNEL): Failed to establish tunnel to generativelanguage.invalid:443 via http://127.0.0.1:44757: HTTP/1.1 403 Forbidden
+
+SUMMARY [{"label":"generateContent with an invalid key","kind":"AUTH","httpStatus":400},{"label":"ListModels with an invalid key","kind":"AUTH","httpStatus":400},{"label":"ListModels with no key at all","kind":"PERMISSION","httpStatus":403},{"label":"DNS failure (reserved .invalid host)","kind":"NETWORK","httpStatus":null}]
+⚠️ Ignored late network socket error (ECONNRESET).

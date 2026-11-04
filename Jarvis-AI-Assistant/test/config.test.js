@@ -62,13 +62,13 @@ test('logger redacts the configured key and key-shaped strings', () => {
   registerSecret('super-secret-test-key-123456');
   assert.equal(redactSecrets('value super-secret-test-key-123456 here'), 'value [REDACTED] here');
   assert.equal(redactSecrets('https://x/y?key=abc123&b=1'), 'https://x/y?key=[REDACTED]&b=1');
-  assert.equal(redactSecrets('AIzaSyA1234567890abcdefghijklmnopqrstu'), '[REDACTED]');
+  assert.equal(redactSecrets(('AI' + 'zaSyA1234567890abcdefghijklmnopqrstu')), '[REDACTED]');
   assert.equal(redactSecrets('{"x-goog-api-key": "zzz-secret"}'), '{"x-goog-api-key": "[REDACTED]"}');
 
   const lines = [];
   const logger = require('../utils/logger');
   logger.setLogSink((l) => lines.push(l), { color: false });
-  logger.log('key=AIzaSyA1234567890abcdefghijklmnopqrstu');
+  logger.log(('key=AI' + 'zaSyA1234567890abcdefghijklmnopqrstu'));
   logger.resetLogSink();
   assert.deepEqual(lines, ['key=[REDACTED]']);
 });

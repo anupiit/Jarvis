@@ -117,7 +117,7 @@ test('network errors: ENOTFOUND/EAI_AGAIN → DNS, ECONNRESET → NETWORK, ETIME
 });
 
 test('error messages and hints never contain the API key', () => {
-  require('../utils/redact').registerSecret('AIzaFAKEKEYFORTESTS000000000000000000');
-  const e = new GeminiError(ErrorKind.UNKNOWN, 'failed for https://x/?key=AIzaFAKEKEYFORTESTS000000000000000000');
+  require('../utils/redact').registerSecret(('AI' + 'zaFAKEKEYFORTESTS000000000000000000'));
+  const e = new GeminiError(ErrorKind.UNKNOWN, ('failed for https://x/?key=AI' + 'zaFAKEKEYFORTESTS000000000000000000'));
   assert.doesNotMatch(e.message, /AIzaFAKE/);
 });

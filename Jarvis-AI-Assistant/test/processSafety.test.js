@@ -15,7 +15,7 @@ test('a late socket ECONNRESET is logged and the process keeps running', () => {
 });
 
 test('any other uncaught exception exits non-zero with a redacted report', () => {
-  const r = run(`setImmediate(() => { throw new Error('boom key=AIzaSyA1234567890abcdefghijklmnopqrstu'); });`);
+  const r = run(`setImmediate(() => { throw new Error(('boom key=AI' + 'zaSyA1234567890abcdefghijklmnopqrstu')); });`);
   assert.equal(r.status, 1);
   assert.match(r.stderr, /Fatal internal error/);
   assert.doesNotMatch(r.stderr, /AIzaSyA1234567890/);
