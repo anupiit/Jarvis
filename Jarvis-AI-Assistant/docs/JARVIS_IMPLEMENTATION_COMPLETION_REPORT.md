@@ -136,7 +136,7 @@ This is engineering hardening, **not** a formal security audit.
 
 `npm test`: **229 passed, 0 failed, 0 skipped** (21 files; leaf tests, no nested suites).
 Mocked/deterministic: 229. Real-API tests in the suite: 0 (live checks are separate scripts).
-Physical hardware tests: 0. Coverage: 94.91 % lines / 80.69 % branches / 90.05 % functions of the
+Physical hardware tests: 0. Coverage: 94.91 % lines / 80.74 % branches / 90.05 % functions of the
 modules loaded by tests (entry points excluded) — **not** 100 %.
 
 ## 14. Benchmark results

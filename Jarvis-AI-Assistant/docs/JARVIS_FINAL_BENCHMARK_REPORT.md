@@ -12,7 +12,7 @@ machine, no Google · `LIVE` = real request to Google's API · `BLOCKED` = could
 | # | Benchmark | Type | Result |
 |---|---|---|---|
 | 1 | Automated test suite | MOCKED/LOCAL | **229 / 229 passed**, 0 failed, 0 skipped, 21 files |
-| 2 | Coverage (modules loaded by tests) | MOCKED/LOCAL | **94.91 % lines, 80.69 % branches, 90.05 % functions** |
+| 2 | Coverage (modules loaded by tests) | MOCKED/LOCAL | **94.91 % lines, 80.74 % branches, 90.05 % functions** |
 | 3 | Outbound requests, 20 identical prompts | MOCKED | 1 request (**95 % fewer** than one per call) |
 | 4 | Outbound requests, 200 calls / 25 prompts (skewed) | MOCKED | 25 requests (**87.5 % fewer**) |
 | 5 | Outbound requests, 20 distinct prompts (control) | MOCKED | 20 requests (0 %) |

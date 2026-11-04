@@ -6,7 +6,7 @@ wherever they are used. Measured 2026-11-04 on Node.js v22.23.4, Linux, 4 × Xeo
 | Metric | Value | Type | Reproduce | Raw data |
 |---|---|---|---|---|
 | Automated tests | 229 passing / 0 failing (21 files, leaf tests only) | deterministic | `npm test` | `benchmark-results/coverage.txt` |
-| Line / branch / function coverage | 94.91 % / 80.69 % / 90.05 % (modules loaded by tests) | deterministic | `npm run test:coverage` | `benchmark-results/coverage.txt` |
+| Line / branch / function coverage | 94.91 % / 80.74 % / 90.05 % (modules loaded by tests) | deterministic | `npm run test:coverage` | `benchmark-results/coverage.txt` |
 | Seeded defect detection | 15 / 15 | local | `npm run bench:validation` | `benchmark-results/validation.json` |
 | False positives on known-good files | 0 / 7 | local | `npm run bench:validation` | `benchmark-results/validation.json` |
 | Outbound-request reduction, 20 identical prompts | 95 % (20 → 1) | **mocked transport** | `npm run bench:reliability` | `benchmark-results/reliability.json` |
