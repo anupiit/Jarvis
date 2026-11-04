@@ -1,7 +1,27 @@
 const { colors } = require('../config/config');
+const { redactSecrets } = require('./redact');
+
+// Output sink can be swapped (tests capture output; the CLI writes to stdout).
+let sink = (line) => process.stdout.write(line + '\n');
+let useColor = true;
+
+function setLogSink(fn, { color = true } = {}) {
+  sink = fn;
+  useColor = color;
+}
+
+function resetLogSink() {
+  sink = (line) => process.stdout.write(line + '\n');
+  useColor = true;
+}
 
 function log(message, color = 'white') {
-  console.log(`${colors[color]}${message}${colors.reset}`);
+  const text = redactSecrets(message === undefined ? '' : String(message));
+  if (useColor && colors[color]) {
+    sink(`${colors[color]}${text}${colors.reset}`);
+  } else {
+    sink(text);
+  }
 }
 
 function delay(ms) {
@@ -9,13 +29,17 @@ function delay(ms) {
 }
 
 function displayProgress(step, total, message) {
-  const percentage = Math.round((step / total) * 100);
-  const progressBar = '█'.repeat(Math.floor(percentage / 5)) + '░'.repeat(20 - Math.floor(percentage / 5));
+  const safeTotal = Math.max(1, total);
+  const percentage = Math.min(100, Math.round((step / safeTotal) * 100));
+  const filled = Math.floor(percentage / 5);
+  const progressBar = '█'.repeat(filled) + '░'.repeat(20 - filled);
   log(`[${progressBar}] ${percentage}% - ${message}`, 'cyan');
 }
 
 module.exports = {
   log,
   delay,
-  displayProgress
-}; 
+  displayProgress,
+  setLogSink,
+  resetLogSink
+};

@@ -1,12 +1,15 @@
 {
   "name": "jarvis-ai-assistant",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "An AI-powered project generator and assistant",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node scripts/run-tests.js",
+    "test:coverage": "node scripts/run-tests.js --coverage",
+    "diagnose": "node scripts/diagnose-gemini.js",
+    "live:errors": "node scripts/live-error-paths.js"
   },
   "keywords": [
     "ai",
@@ -24,6 +27,6 @@
     "nodemon": "^2.0.0"
   },
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=18.0.0"
   }
 }
