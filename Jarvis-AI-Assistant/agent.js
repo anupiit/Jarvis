@@ -1,6 +1,2 @@
-// Legacy entry point - redirects to new modular structure
-const JarvisController = require('./controllers/JarvisController');
-
-// Start Jarvis
-const jarvis = new JarvisController();
-jarvis.start();
+// Legacy entry point — kept for compatibility. Use `npm start` or `node index.js`.
+require('./index');
