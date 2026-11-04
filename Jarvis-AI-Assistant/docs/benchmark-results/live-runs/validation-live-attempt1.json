@@ -1,0 +1,260 @@
+{
+  "environment": {
+    "node": "v22.23.4",
+    "platform": "linux 6.18.44-fc-v233",
+    "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+    "cpus": 4,
+    "date": "2026-11-04T08:23:14.721Z"
+  },
+  "benchmark": "validation-and-self-correction",
+  "corpusSize": 15,
+  "detection": {
+    "detected": 15,
+    "fixAccepted": 15,
+    "perDefect": [
+      {
+        "id": "js-missing-brace",
+        "file": "script.js",
+        "detected": true,
+        "rules": "syntax",
+        "fixAccepted": true,
+        "ms": 3.9
+      },
+      {
+        "id": "js-unterminated-string",
+        "file": "script.js",
+        "detected": true,
+        "rules": "syntax",
+        "fixAccepted": true,
+        "ms": 0.19
+      },
+      {
+        "id": "js-extra-paren",
+        "file": "script.js",
+        "detected": true,
+        "rules": "syntax",
+        "fixAccepted": true,
+        "ms": 0.11
+      },
+      {
+        "id": "js-import-in-classic-script",
+        "file": "script.js",
+        "detected": true,
+        "rules": "syntax",
+        "fixAccepted": true,
+        "ms": 0.19
+      },
+      {
+        "id": "js-require-in-browser",
+        "file": "script.js",
+        "detected": true,
+        "rules": "node-api-in-browser",
+        "fixAccepted": true,
+        "ms": 0.23
+      },
+      {
+        "id": "esm-bad-export",
+        "file": "app.mjs",
+        "detected": true,
+        "rules": "syntax",
+        "fixAccepted": true,
+        "ms": 70.66
+      },
+      {
+        "id": "cjs-bad-arrow",
+        "file": "server.js",
+        "detected": true,
+        "rules": "syntax",
+        "fixAccepted": true,
+        "ms": 0.58
+      },
+      {
+        "id": "json-trailing-comma",
+        "file": "data.json",
+        "detected": true,
+        "rules": "syntax",
+        "fixAccepted": true,
+        "ms": 0.24
+      },
+      {
+        "id": "json-single-quotes",
+        "file": "data.json",
+        "detected": true,
+        "rules": "syntax",
+        "fixAccepted": true,
+        "ms": 0.09
+      },
+      {
+        "id": "css-unclosed-block",
+        "file": "style.css",
+        "detected": true,
+        "rules": "unclosed-block",
+        "fixAccepted": true,
+        "ms": 0.93
+      },
+      {
+        "id": "css-stray-brace",
+        "file": "style.css",
+        "detected": true,
+        "rules": "unexpected-closing-brace",
+        "fixAccepted": true,
+        "ms": 0.02
+      },
+      {
+        "id": "css-missing-colon",
+        "file": "style.css",
+        "detected": true,
+        "rules": "invalid-declaration",
+        "fixAccepted": true,
+        "ms": 0.03
+      },
+      {
+        "id": "html-unclosed-div",
+        "file": "index.html",
+        "detected": true,
+        "rules": "unclosed-tag",
+        "fixAccepted": true,
+        "ms": 1.69
+      },
+      {
+        "id": "html-truncated",
+        "file": "index.html",
+        "detected": true,
+        "rules": "unclosed-tag,truncated",
+        "fixAccepted": true,
+        "ms": 0.12
+      },
+      {
+        "id": "html-markdown-fence",
+        "file": "index.html",
+        "detected": true,
+        "rules": "markdown-fence,truncated",
+        "fixAccepted": true,
+        "ms": 0.12
+      }
+    ],
+    "validationMs": {
+      "n": 15,
+      "mean": 5.273,
+      "p50": 0.19,
+      "p95": 70.66,
+      "max": 70.66
+    }
+  },
+  "falsePositives": {
+    "filesChecked": 7,
+    "flagged": 0,
+    "details": []
+  },
+  "correction": {
+    "mode": "LIVE Gemini (gemini-3.5-flash)",
+    "repaired": 2,
+    "perDefect": [
+      {
+        "id": "js-missing-brace",
+        "repaired": true,
+        "corrections": 1,
+        "error": null,
+        "ms": 8083
+      },
+      {
+        "id": "js-unterminated-string",
+        "repaired": true,
+        "corrections": 1,
+        "error": null,
+        "ms": 8969
+      },
+      {
+        "id": "js-extra-paren",
+        "repaired": false,
+        "corrections": 0,
+        "error": "QUOTA_EXHAUSTED",
+        "ms": 167
+      },
+      {
+        "id": "js-import-in-classic-script",
+        "repaired": false,
+        "corrections": 0,
+        "error": "CIRCUIT_OPEN",
+        "ms": 0
+      },
+      {
+        "id": "js-require-in-browser",
+        "repaired": false,
+        "corrections": 0,
+        "error": "CIRCUIT_OPEN",
+        "ms": 0
+      },
+      {
+        "id": "esm-bad-export",
+        "repaired": false,
+        "corrections": 0,
+        "error": "CIRCUIT_OPEN",
+        "ms": 0
+      },
+      {
+        "id": "cjs-bad-arrow",
+        "repaired": false,
+        "corrections": 0,
+        "error": "CIRCUIT_OPEN",
+        "ms": 0
+      },
+      {
+        "id": "json-trailing-comma",
+        "repaired": false,
+        "corrections": 0,
+        "error": "CIRCUIT_OPEN",
+        "ms": 0
+      },
+      {
+        "id": "json-single-quotes",
+        "repaired": false,
+        "corrections": 0,
+        "error": "CIRCUIT_OPEN",
+        "ms": 0
+      },
+      {
+        "id": "css-unclosed-block",
+        "repaired": false,
+        "corrections": 0,
+        "error": "CIRCUIT_OPEN",
+        "ms": 0
+      },
+      {
+        "id": "css-stray-brace",
+        "repaired": false,
+        "corrections": 0,
+        "error": "CIRCUIT_OPEN",
+        "ms": 0
+      },
+      {
+        "id": "css-missing-colon",
+        "repaired": false,
+        "corrections": 0,
+        "error": "CIRCUIT_OPEN",
+        "ms": 0
+      },
+      {
+        "id": "html-unclosed-div",
+        "repaired": false,
+        "corrections": 0,
+        "error": "CIRCUIT_OPEN",
+        "ms": 0
+      },
+      {
+        "id": "html-truncated",
+        "repaired": false,
+        "corrections": 0,
+        "error": "CIRCUIT_OPEN",
+        "ms": 0
+      },
+      {
+        "id": "html-markdown-fence",
+        "repaired": false,
+        "corrections": 0,
+        "error": "CIRCUIT_OPEN",
+        "ms": 0
+      }
+    ]
+  }
+}
