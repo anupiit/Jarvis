@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskFlow — To-Do List</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <div class="header-content">
+        <h1 class="app-title">TaskFlow</h1>
+        <p class="app-subtitle">Stay organized and productive</p>
+      </div>
+    </header>
+
+    <main class="app-main">
+      <form id="todo-form" class="todo-form" aria-label="Add a new task">
+        <div class="input-container">
+          <label for="todo-input" class="visually-hidden">Task description</label>
+          <input 
+            type="text" 
+            id="todo-input" 
+            class="todo-input" 
+            placeholder="What needs to be done?" 
+            maxlength="200"
+            required
+            autocomplete="off"
+          >
+          <button type="submit" id="add-btn" class="btn btn-primary" aria-label="Add task">
+            <span class="btn-icon" aria-hidden="true">+</span>
+            <span class="btn-text">Add</span>
+          </button>
+        </div>
+      </form>
+
+      <div class="controls-bar">
+        <div class="stats">
+          <span id="task-counter" class="task-counter" aria-live="polite">0 items left</span>
+        </div>
+        <div class="filter-group" role="tablist" aria-label="Filter tasks">
+          <button type="button" class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
+          <button type="button" class="filter-btn" data-filter="active" role="tab" aria-selected="false">Active</button>
+          <button type="button" class="filter-btn" data-filter="completed" role="tab" aria-selected="false">Completed</button>
+        </div>
+        <button type="button" id="clear-completed-btn" class="btn-text-link hidden">Clear Completed</button>
+      </div>
+
+      <section class="task-section" aria-label="Tasks list">
+        <ul id="todo-list" class="todo-list">
+          <!-- Dynamic task items inserted here -->
+        </ul>
+        <div id="empty-state" class="empty-state">
+          <div class="empty-icon" aria-hidden="true">📋</div>
+          <p class="empty-title">No tasks yet</p>
+          <p class="empty-subtitle">Add a task above to get started!</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <p>Tasks are automatically persisted in your local browser storage.</p>
+    </footer>
+  </div>
+</body>
+</html>

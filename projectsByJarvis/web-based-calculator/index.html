@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Theme Web Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <main class="calculator" role="application" aria-label="Simple Dark Calculator">
+        <div class="display-container">
+            <div id="display" class="display" aria-live="polite" aria-atomic="true">0</div>
+        </div>
+        <div class="button-grid">
+            <!-- Top functional row -->
+            <button type="button" id="clear" class="btn btn-clear">AC</button>
+            <button type="button" id="divide" class="btn btn-operator" aria-label="divide">÷</button>
+            
+            <!-- Keypad Rows -->
+            <button type="button" id="n7" class="btn btn-number">7</button>
+            <button type="button" id="n8" class="btn btn-number">8</button>
+            <button type="button" id="n9" class="btn btn-number">9</button>
+            <button type="button" id="multiply" class="btn btn-operator" aria-label="multiply">×</button>
+
+            <button type="button" id="n4" class="btn btn-number">4</button>
+            <button type="button" id="n5" class="btn btn-number">5</button>
+            <button type="button" id="n6" class="btn btn-number">6</button>
+            <button type="button" id="subtract" class="btn btn-operator" aria-label="subtract">−</button>
+
+            <button type="button" id="n1" class="btn btn-number">1</button>
+            <button type="button" id="n2" class="btn btn-number">2</button>
+            <button type="button" id="n3" class="btn btn-number">3</button>
+            <button type="button" id="add" class="btn btn-operator" aria-label="add">+</button>
+
+            <button type="button" id="n0" class="btn btn-number btn-zero">0</button>
+            <button type="button" id="decimal" class="btn btn-number">.</button>
+            <button type="button" id="equals" class="btn btn-equals" aria-label="calculate equals">=</button>
+        </div>
+    </main>
+</body>
+</html>

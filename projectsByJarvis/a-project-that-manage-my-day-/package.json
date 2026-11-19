@@ -1,0 +1,19 @@
+{
+  "name": "a-project-that-manage-my-day-",
+  "version": "1.0.0",
+  "description": "a project that manage my day ",
+  "main": "index.html",
+  "scripts": {
+    "start": "open index.html",
+    "dev": "live-server .",
+    "build": "echo 'Build script here'"
+  },
+  "keywords": [
+    "Core functionality",
+    "Responsive design",
+    "Modern UI"
+  ],
+  "author": "Jarvis AI",
+  "dependencies": {},
+  "devDependencies": {}
+}

@@ -1,0 +1,164 @@
+/* styles.css */
+
+/* CSS Reset (Normalize) */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+  line-height: 1.5;
+  background-color: #f0f2f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* CSS Variables (Custom Properties) */
+:root {
+  --color-primary: #007bff;
+  --color-secondary: #6c757d;
+  --color-success: #28a745;
+  --color-danger: #dc3545;
+  --color-warning: #ffc107;
+  --color-info: #17a2b8;
+  --color-light: #f8f9fa;
+  --color-dark: #343a40;
+
+  --bg-color: #fff;
+  --text-color: #212529;
+  --border-color: #dee2e6;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+
+  --font-size-base: 1rem;
+  --border-radius: 0.25rem;
+  --transition-duration: 0.2s;
+}
+
+/* Dark Mode (Optional) */
+/*
+body.dark-mode {
+  --bg-color: #343a40;
+  --text-color: #f8f9fa;
+  --border-color: #495057;
+  --shadow-color: rgba(255, 255, 255, 0.1);
+}
+*/
+
+/* Calculator Container */
+.calculator {
+  width: 100%;
+  max-width: 400px;
+  background-color: var(--bg-color);
+  border-radius: var(--border-radius);
+  box-shadow: 0 0.5rem 1rem var(--shadow-color);
+  overflow: hidden;
+  transition: background-color var(--transition-duration);
+}
+
+/* Display */
+.calculator-display {
+  padding: 1rem;
+  text-align: right;
+  background-color: #e9ecef;
+}
+
+.calculator-display .expression {
+  font-size: 1.2rem;
+  color: var(--color-secondary);
+  min-height: 1.2em;
+}
+
+.calculator-display .result {
+  font-size: 2rem;
+  color: var(--text-color);
+  word-wrap: break-word; /* Prevents overflow */
+  overflow: hidden;
+  min-height: 2em;
+}
+
+/* Buttons Grid */
+.calculator-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  padding: 0.5rem;
+}
+
+.calculator-buttons button {
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-size: var(--font-size-base);
+  padding: 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color var(--transition-duration),
+    color var(--transition-duration), border-color var(--transition-duration);
+}
+
+.calculator-buttons button:hover {
+  background-color: #f0f0f0; /* Lighten on hover */
+}
+
+.calculator-buttons button:active {
+  background-color: #ddd; /* Darken on click */
+}
+
+/* Special Buttons */
+.calculator-buttons .operator {
+  color: var(--color-primary);
+}
+
+.calculator-buttons .clear {
+  color: var(--color-danger);
+}
+
+.calculator-buttons .equal {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+
+.calculator-buttons .equal:hover {
+  background-color: #0056b3; /* Darker shade */
+}
+
+.calculator-buttons .span-2 {
+  grid-column: span 2;
+}
+
+/* Micro-Animations (Loading State) */
+.loading-animation {
+  animation: pulse 1.5s infinite alternate;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 576px) {
+  .calculator {
+    max-width: 100%;
+    margin: 0.5rem;
+  }
+
+  .calculator-buttons {
+    grid-template-columns: repeat(4, 1fr); /* Adjust button layout for smaller screens */
+  }
+}
+
+/* Keyboard Input Styles */
+.keyboard-active {
+  background-color: #ddd; /* Highlight when keyboard input is active */
+}

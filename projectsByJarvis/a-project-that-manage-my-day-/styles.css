@@ -1,0 +1,243 @@
+/* styles.css */
+
+/*
+  Project: Day Manager
+  Author: AI Assistant
+  Purpose: Core styling, responsive design, modern UI
+*/
+
+/* CSS Reset (Simplified) */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+  line-height: 1.6;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* CSS Custom Properties (Variables) */
+:root {
+  --color-primary: #007bff;
+  --color-secondary: #6c757d;
+  --color-success: #28a745;
+  --color-danger: #dc3545;
+  --color-warning: #ffc107;
+  --color-info: #17a2b8;
+  --color-light: #f8f9fa;
+  --color-dark: #343a40;
+
+  --color-background: #f0f0f0;
+  --color-text: #333;
+  --color-accent: #00bcd4;
+  --color-border: #ccc;
+
+  --font-size-small: 0.8rem;
+  --font-size-normal: 1rem;
+  --font-size-large: 1.2rem;
+  --font-size-xlarge: 1.5rem;
+
+  --spacing-small: 0.5rem;
+  --spacing-normal: 1rem;
+  --spacing-large: 1.5rem;
+
+  --border-radius: 0.25rem;
+  --box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+
+  --transition-duration: 0.2s;
+  --transition-easing: ease-in-out;
+}
+
+/* General Styles */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-normal);
+}
+
+/* Header */
+header {
+  background-color: var(--color-primary);
+  color: var(--color-light);
+  padding: var(--spacing-large);
+  text-align: center;
+  margin-bottom: var(--spacing-large);
+}
+
+header h1 {
+  font-size: var(--font-size-xlarge);
+}
+
+/* Main Content */
+main {
+  flex-grow: 1; /* Occupy available vertical space */
+}
+
+/* Day List */
+.day-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-normal);
+}
+
+.day-card {
+  background-color: var(--color-light);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-normal);
+  box-shadow: var(--box-shadow);
+  transition: transform var(--transition-duration) var(--transition-easing);
+}
+
+.day-card:hover {
+  transform: translateY(-5px);
+}
+
+.day-card h2 {
+  font-size: var(--font-size-large);
+  margin-bottom: var(--spacing-small);
+  color: var(--color-primary);
+}
+
+.day-card p {
+  margin-bottom: var(--spacing-small);
+}
+
+/* Task List */
+.task-list {
+  list-style: none;
+  padding: 0;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-small);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.task-item:last-child {
+  border-bottom: none;
+}
+
+.task-item input[type="checkbox"] {
+  margin-right: var(--spacing-small);
+}
+
+.task-item.completed {
+  text-decoration: line-through;
+  color: var(--color-secondary);
+}
+
+/* Add Day Form */
+.add-day-form {
+  margin-bottom: var(--spacing-large);
+}
+
+.form-group {
+  margin-bottom: var(--spacing-normal);
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: var(--spacing-small);
+}
+
+.form-group input[type="text"],
+.form-group textarea {
+  width: 100%;
+  padding: var(--spacing-small);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+/* Buttons */
+.btn {
+  padding: var(--spacing-small) var(--spacing-normal);
+  border: none;
+  border-radius: var(--border-radius);
+  color: var(--color-light);
+  cursor: pointer;
+  transition: opacity var(--transition-duration) var(--transition-easing);
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+}
+
+.btn-secondary {
+  background-color: var(--color-secondary);
+}
+
+.btn-success {
+  background-color: var(--color-success);
+}
+
+.btn-danger {
+  background-color: var(--color-danger);
+}
+
+/* Loading State */
+.loading {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Micro-Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn var(--transition-duration) var(--transition-easing);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: var(--spacing-large);
+  background-color: var(--color-dark);
+  color: var(--color-light);
+  margin-top: var(--spacing-large);
+}
+
+/* Responsive Design (Mobile-First) */
+@media (min-width: 768px) {
+  .container {
+    width: 80%;
+  }
+
+  header h1 {
+    font-size: var(--font-size-xlarge);
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    width: 70%;
+  }
+}
