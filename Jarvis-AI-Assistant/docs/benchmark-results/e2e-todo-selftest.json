@@ -1,0 +1,21 @@
+{
+  "environment": {
+    "node": "v22.23.4",
+    "platform": "linux 6.18.44-fc-v233",
+    "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+    "cpus": 4,
+    "date": "2026-11-04T08:23:07.823Z"
+  },
+  "mode": "SELF-TEST: local mock Gemini serving the hand-written reference app (validates the harness, NOT generation quality)",
+  "status": "GENERATED",
+  "model": "selftest-model (mock)",
+  "cliExitCode": 0,
+  "durationMs": 222,
+  "aiCorrections": 0,
+  "requestStats": "Calls: 4 | outbound HTTP: 4 | cache hits: 0 | coalesced: 0",
+  "verification": {
+    "passed": 23,
+    "total": 23,
+    "browserSkipped": null
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "environment": {
+    "node": "v22.23.4",
+    "platform": "linux 6.18.44-fc-v233",
+    "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+    "cpus": 4,
+    "date": "2026-11-04T07:54:46.506Z"
+  },
+  "benchmark": "reliability-engine",
+  "transport": "MOCKED (in-memory, fixed latency) — no network, no Gemini",
+  "results": [
+    {
+      "scenario": "20 concurrent identical prompts (coalescing)",
+      "logicalCalls": 20,
+      "outboundRequests": 1,
+      "reductionVsOneRequestPerCall": "95%",
+      "coalesced": 19
+    },
+    {
+      "scenario": "20 sequential identical prompts (cache)",
+      "logicalCalls": 20,
+      "outboundRequests": 1,
+      "reductionVsOneRequestPerCall": "95%",
+      "cacheHits": 19
+    },
+    {
+      "scenario": "20 distinct prompts (control — nothing to reuse)",
+      "logicalCalls": 20,
+      "outboundRequests": 20,
+      "reductionVsOneRequestPerCall": "0%"
+    },
+    {
+      "scenario": "200 calls over 25 prompts, skewed, 10 concurrent per wave (seed 42)",
+      "logicalCalls": 200,
+      "outboundRequests": 25,
+      "reductionVsOneRequestPerCall": "87.5%",
+      "cacheHits": 171,
+      "coalesced": 4
+    },
+    {
+      "scenario": "20 distinct prompts, first attempt of each returns 503",
+      "logicalCalls": 20,
+      "outboundRequests": 40,
+      "reductionVsOneRequestPerCall": "-100%",
+      "succeeded": 20,
+      "retries": 20,
+      "note": "retries ADD requests; bounded retry trades requests for success"
+    }
+  ],
+  "engineOverheadMsPerCall": {
+    "n": 1800,
+    "mean": 0.028,
+    "p50": 0.021,
+    "p95": 0.045,
+    "max": 1.346
+  }
+}

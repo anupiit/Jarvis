@@ -1,0 +1,66 @@
+🩺 Running Gemini diagnostics...
+⚠️ Gemini HTTP 503: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later. — retry 1/3 in 955 ms
+⚠️ Gemini HTTP 503: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later. — retry 2/3 in 2 s
+⚠️ Gemini HTTP 503: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later. — retry 3/3 in 4 s
+  1. Configuration: OK
+  2. ListModels: OK (60 models, 46 with generateContent)
+  3. "gemini-flash-latest" listed: yes, supports generateContent: yes
+  4. Live generation with "gemini-flash-latest": FAILED
+     Gemini is temporarily unavailable (HTTP 503 UNAVAILABLE): This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+     → Gemini is overloaded or having an outage. Try again in a few minutes. (gave up after 4 attempts)
+     Models listed for your key that you could try: gemini-2.5-flash, gemini-2.5-flash-lite, gemini-3-flash-preview, gemini-3.1-flash-lite, gemini-3.1-flash-lite-preview, gemini-3.5-flash
+🔎 Asking Gemini which models this API key can use...
+
+🧪 60 models listed, 46 support generateContent:
+  • antigravity-preview-05-2026 (in 1,048,576 / out 65,536 tokens)
+  • antigravity-preview-09-2026 (in 1,048,576 / out 65,536 tokens)
+  • antigravity-preview-latest (in 1,048,576 / out 65,536 tokens)
+  • deep-research-max-preview-04-2026 (in 131,072 / out 65,536 tokens)
+  • deep-research-preview-04-2026 (in 131,072 / out 65,536 tokens)
+  • deep-research-pro-preview-12-2025 (in 131,072 / out 65,536 tokens)
+  • gemini-2.5-computer-use-preview-10-2025 (in 131,072 / out 65,536 tokens)
+  • gemini-2.5-flash (in 1,048,576 / out 65,536 tokens)
+  • gemini-2.5-flash-image (in 32,768 / out 32,768 tokens)
+  • gemini-2.5-flash-lite (in 1,048,576 / out 65,536 tokens)
+  • gemini-2.5-flash-preview-tts (in 8,192 / out 16,384 tokens)
+  • gemini-2.5-pro (in 1,048,576 / out 65,536 tokens)
+  • gemini-2.5-pro-preview-tts (in 8,192 / out 16,384 tokens)
+  • gemini-3-flash-preview (in 1,048,576 / out 65,536 tokens)
+  • gemini-3-pro-image (in 131,072 / out 32,768 tokens)
+  • gemini-3-pro-image-preview (in 131,072 / out 32,768 tokens)
+  • gemini-3.1-flash-image (in 65,536 / out 65,536 tokens)
+  • gemini-3.1-flash-image-preview (in 65,536 / out 65,536 tokens)
+  • gemini-3.1-flash-lite (in 1,048,576 / out 65,536 tokens)
+  • gemini-3.1-flash-lite-image (in 65,536 / out 65,536 tokens)
+  • gemini-3.1-flash-lite-preview (in 1,048,576 / out 65,536 tokens)
+  • gemini-3.1-flash-tts-preview (in 8,192 / out 16,384 tokens)
+  • gemini-3.1-pro-preview (in 1,048,576 / out 65,536 tokens)
+  • gemini-3.1-pro-preview-customtools (in 1,048,576 / out 65,536 tokens)
+  • gemini-3.5-flash (in 1,048,576 / out 65,536 tokens)
+  • gemini-3.5-flash-lite (in 1,048,576 / out 65,536 tokens)
+  • gemini-3.5-transcribe (in 98,304 / out 32,768 tokens)
+  • gemini-3.6-flash (in 1,048,576 / out 65,536 tokens)
+  • gemini-3.7-flash (in 1,048,576 / out 65,536 tokens)
+  • gemini-3.8-flash (in 1,048,576 / out 65,536 tokens)
+  • gemini-3.8-flash-lite-tts (in 8,192 / out 16,384 tokens)
+  • gemini-3.8-flash-tts (in 8,192 / out 16,384 tokens)
+  • gemini-4-argon (in 1,048,576 / out 32,768 tokens)
+  • gemini-flash-latest (in 1,048,576 / out 65,536 tokens) ← configured
+  • gemini-flash-lite-latest (in 1,048,576 / out 65,536 tokens)
+  • gemini-nano-banana-2.1 (in 65,536 / out 65,536 tokens)
+  • gemini-omni-1.1-flash (in 131,072 / out 65,536 tokens)
+  • gemini-omni-flash-preview (in 131,072 / out 65,536 tokens)
+  • gemini-pro-latest (in 1,048,576 / out 65,536 tokens)
+  • gemini-robotics-er-2-preview (in 131,072 / out 65,536 tokens)
+  • gemma-4-26b-a4b-it (in 262,144 / out 32,768 tokens)
+  • gemma-4-31b-it (in 262,144 / out 32,768 tokens)
+  • lyria-3-clip-preview (in 1,048,576 / out 65,536 tokens)
+  • lyria-3-pro-preview (in 1,048,576 / out 65,536 tokens)
+  • lyria-3.5 (in 1,048,576 / out 65,536 tokens)
+  • nano-banana-pro-preview (in 131,072 / out 32,768 tokens)
+ℹ️ Being listed does not guarantee generation works (quota, tier, region). Run "diagnose <model>" to test one.
+
+--- Follow-up live probes (same session, 2026-11-04, before the live E2E runs) ---
+gemini-3.8-flash : FAILED  HTTP 429 RESOURCE_EXHAUSTED (classified RATE_LIMITED; retried with Google's ~33 s delay, gave up after 4 attempts); minutes later HTTP 503 "high demand"
+gemini-3.5-flash : OK      6913 ms, finishReason STOP, modelVersion gemini-3.6-flash, reply "OK"
+gemini-2.5-flash : FAILED  HTTP 404 NOT_FOUND "no longer available to new users" — although ListModels lists it

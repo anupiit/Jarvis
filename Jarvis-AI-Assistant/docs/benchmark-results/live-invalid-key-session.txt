@@ -1,0 +1,40 @@
+🚀 JARVIS — AI project generator
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Node.js v22.23.4 on linux
+  Settings file: not found (<repo>/Jarvis-AI-Assistant/.env) — copy .env.example to .env
+  Gemini API key: configured ✔   Model: gemini-flash-latest
+  Projects folder: <repo>/Jarvis-AI-Assistant/projectsByJarvis
+  Voice: unavailable — Voice input/output uses Windows speech APIs; on this OS please type instead. (typed input works normally)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Type "help" for commands, or "create <description>" to build a project.
+
+💡 Jarvis > create a simple todo list app
+
+🎯 New project request: a simple todo list app
+
+🧠 Planning: understanding the request...
+❌ Planning failed: Gemini rejected the API key (HTTP 400 INVALID_ARGUMENT): API key not valid. Please pass a valid API key.
+→ Check GEMINI_API_KEY in .env (no quotes or spaces), then restart Jarvis. Keys: https://aistudio.google.com/app/apikey
+No files were written.
+
+💡 Jarvis > y
+ℹ️ There is no question waiting for an answer. Type "help" for commands.
+
+💡 Jarvis > what is 2+2
+🤔 Thinking...
+❌ Could not answer: Gemini requests paused (HTTP 400 INVALID_ARGUMENT): Requests paused after AUTH: API key not valid. Please pass a valid API key.
+→ Check GEMINI_API_KEY in .env (no quotes or spaces), then restart Jarvis. Keys: https://aistudio.google.com/app/apikey Requests resume automatically in 15 min (restart Jarvis after fixing configuration).
+Tip: to build something, start with "create ...". Type "help" for all commands.
+
+💡 Jarvis > stats
+
+📊 Gemini requests this session (process-local)
+  Calls: 2 | outbound HTTP: 1 | cache hits: 0 | coalesced: 0
+  Successes: 0 | failures: 1 | retries: 0 | rate-limit delays: 0
+  Latency (ms): p50 379 | p95 379 | max 379
+  Circuit: OPEN (resumes in 15 min) | queue: 0 | cache entries: 0
+  Errors: AUTH×1
+
+💡 Jarvis > exit
+👋 Goodbye — thanks for using Jarvis!
+elapsed_ms=491

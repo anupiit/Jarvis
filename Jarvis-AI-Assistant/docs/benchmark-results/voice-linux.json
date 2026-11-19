@@ -1,0 +1,27 @@
+{
+  "environment": {
+    "node": "v22.23.4",
+    "platform": "linux 6.18.44-fc-v233",
+    "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+    "cpus": 4,
+    "date": "2026-11-04T07:55:24.161Z"
+  },
+  "benchmark": "voice",
+  "dispatchLatencyMs": {
+    "recognizer": "MOCK (in-memory, returns \"hello\")",
+    "n": 450,
+    "mean": 0.006,
+    "p50": 0.003,
+    "p95": 0.007,
+    "max": 0.78
+  },
+  "powershellStartup": {
+    "measured": false,
+    "reason": "not Windows (linux)"
+  },
+  "sapiProbe": {
+    "measured": false,
+    "reason": "not Windows (linux)"
+  },
+  "physicalMicrophoneSpeakerTest": "NOT PERFORMED by this script"
+}
